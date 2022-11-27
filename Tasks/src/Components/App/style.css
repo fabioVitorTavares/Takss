@@ -1,0 +1,10 @@
+* {
+  font-family: 'Nunito', sans-serif;
+  user-select: none;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

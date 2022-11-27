@@ -1,0 +1,8 @@
+.task {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 200ren;
+  background-color: #5959e7;
+  margin-bottom: 20px;
+}
