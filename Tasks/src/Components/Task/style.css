@@ -1,8 +1,61 @@
 .task {
+  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 200ren;
-  background-color: #5959e7;
+  height: 10rem;
+  background-color: #ceceed;
   margin-bottom: 20px;
+}
+
+.options {
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  width: 8rem;
+  height: min-content;
+  right: 0;
+  top: 0;
+  margin-top: 1%;
+  margin-right: 1%;
+}
+
+.buttonTrash, .buttonInfo, .buttonCheck {  
+  margin-left: 6%;
+  border-radius: 15%;
+}
+
+.buttonInfo, .buttonCheck { 
+  width: 24px;
+  height: 24px;
+}
+
+.buttonTrash {
+  border: 2px solid #090909;
+  width: 20px;
+  height: 20px;
+}
+
+.buttonTrash:hover, .buttonInfo:hover, .buttonCheck:hover {
+  cursor: pointer;
+  scale: 1.5;
+  fill: #ffffff;
+}
+
+.buttonTrash:hover {
+  background-color: #ff0000;
+  border: 2px solid #f6f4f4;
+}
+
+.buttonCheck:hover {
+  background-color: #008000;
+}
+
+.buttonInfo:hover {
+  background-color: #1912a7;
+}
+
+.descriptionTask {
+  text-align: center;
 }
