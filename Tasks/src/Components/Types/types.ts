@@ -8,6 +8,7 @@ export type TTask = {
   id: string,
   status: string,
   dateCreated: string,
+  dateCompleted: string,
   deadline: string,
   description: string
 }

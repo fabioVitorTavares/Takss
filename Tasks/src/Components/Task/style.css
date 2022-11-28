@@ -6,9 +6,14 @@
   width: 100%;
   height: 10rem;
   background-color: #ceceed;
-  margin-bottom: 20px;  
+  margin-top: 10px; 
+  opacity: 0.9; 
 }
 
+.task:hover {
+  opacity: 1;
+}
+ 
 .options {
   position: absolute;
   display: flex;
@@ -57,8 +62,59 @@
 
 .buttonInfo:hover {
   background-color: #1912a7;
+  
 }
 
 .descriptionTask {
   text-align: center;
+}
+
+.infos{
+  opacity: 0;
+  position: absolute;
+  width: 10rem;
+  top: 120%;
+  left: 4%;
+  background-color: #1f1f1f;
+  border-radius: 5px;
+}
+
+.infos p {
+  text-align: center;
+  color: #f6f4f4;
+  font-size: small;
+}
+
+.square {
+  position: absolute;
+  top: -8px;
+  left: 45%;
+  width: 16px;
+  height: 16px;
+  background-color: #1f1f1f;
+  transform: rotate(45deg);
+}
+
+.buttonInfo:hover ~ .infos {
+  animation: infoVisible 1s; 
+  opacity: 1; 
+}
+
+
+@keyframes infoVisible {  
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  } 
+}
+
+@keyframes infoInvisible {  
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  } 
 }

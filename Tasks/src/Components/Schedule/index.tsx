@@ -13,14 +13,16 @@ const dias = [
       {
         id: '1',
         status: 'Pending',
-        dateCreated: '2022-11-01',
+        dateCreated: '01/11/2022',
+        dateCompleted: '',
         deadline: '28/11/2022',
         description: 'Tarefas 1.1'
       },
       {
         id: '2',
         status: 'Pending',
-        dateCreated: '2022-11-01',
+        dateCreated: '01/11/2022',
+        dateCompleted: '',
         deadline: '28/11/2022',
         description: 'Tarefas 1.2'
       }
@@ -34,6 +36,7 @@ const dias = [
         id: '1',
         status: 'Pending',
         dateCreated: '29/11/2022',
+        dateCompleted: '',
         deadline: '29/11/2022',
         description: 'Tarefas 2.1'
       },
@@ -41,6 +44,7 @@ const dias = [
         id: '2',
         status: 'Pending',
         dateCreated: '29/11/2022',
+        dateCompleted: '',
         deadline: '29/11/2022',
         description: 'Tarefas 2.2'
       }
@@ -84,11 +88,7 @@ export function Schedule() {
 
   const removeTask = (idDay: string, idTask: string) => {
     const newDay: TTarefas = days.find(day => day.id == idDay) as TTarefas
-    console.log(idDay, idTask);
-    console.log(newDay);
-    
-    newDay.tasks.filter(task => task.id != idTask)
-    console.log(newDay);
+    newDay.tasks = newDay.tasks.filter(task => task.id != idTask)
     setDays([...days.filter(day => day.id != idDay), newDay])
   }
 
