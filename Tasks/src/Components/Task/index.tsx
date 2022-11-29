@@ -11,8 +11,8 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
       style={ task.status == 'Completed' ? {backgroundColor: '#1b9916'} : {}}
     >
       <div className='options'>
-        <BsTrash className='buttonTrash' onClick={() => removeTask()}/>
-        <BsInfoSquare className='buttonInfo'  />
+        <BsTrash className='buttonTrash' onClick={() => removeTask()} title='Delete'/>
+        <BsInfoSquare className='buttonInfo'/>
         <span className='infos'>
           <div className='square'></div>
           <p>Create in { task.dateCreated }</p>
@@ -21,8 +21,8 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
         </span>
         {
           task.status == 'Completed' ?
-          <BsArrowLeftSquare className='buttonUndo' onClick={() => changeStatus('Pending')} /> :
-          <BsCheckSquare className='buttonCheck' onClick={() => changeStatus('Completed')} />
+          <BsArrowLeftSquare className='buttonUndo' onClick={() => changeStatus('Pending', '')}  title='Undo'/> :
+          <BsCheckSquare className='buttonCheck' onClick={() => changeStatus('Completed', new Date().toLocaleDateString())} title='Completed' />
         }
       </div>
       <h2 className='descriptionTask'>{ task.description }</h2>      

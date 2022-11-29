@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
-import { TTarefas, TTask } from '../Types/types'
+import { TTarefas } from '../Types/types'
+import { VscDiffAdded } from 'react-icons/vsc'
 import './style.css'
 
 
@@ -80,9 +81,9 @@ export function Schedule() {
     key.key == 'ArrowUp' && dayPreviousWeek();
   })
 
-  const changeStatus = (idDay:string, idTask:string, newStatus:string) => {
-    const newDay:TTarefas = days.find(day => day.id == idDay) as TTarefas
-    newDay.tasks.map(task =>  task.id == idTask && (task.status = newStatus))
+  const changeStatus = (idDay: string, idTask: string, newStatus: string, dateCompleted: string) => {
+    const newDay: TTarefas = days.find(day => day.id == idDay) as TTarefas
+    newDay.tasks.map(task => task.id == idTask &&(task.status = newStatus, task.dateCompleted = dateCompleted))
     setDays([...days.filter(day => day.id != idDay), newDay])    
   }
 
@@ -100,11 +101,12 @@ export function Schedule() {
           task => <Task
             key={task.id}
             task={task}
-            changeStatus={(newStatus: string) => changeStatus(day.id, task.id, newStatus)}
+            changeStatus={(newStatus: string, dateCompleted:string) => changeStatus(day.id, task.id, newStatus, dateCompleted)}
             removeTask={() => removeTask(day.id, task.id)}
           />
         ))
       }
+      <VscDiffAdded className='buttonAdd'/>
     </div>
   )
 }

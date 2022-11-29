@@ -5,3 +5,15 @@
   justify-content: center;
   width: 80%;  
 }
+
+.buttonAdd {
+  width: 24px;
+  height: 24px;
+  border-radius: 15%;
+}
+
+.buttonAdd:hover {
+  background-color: #1912a7;  
+  cursor: pointer;  
+  fill: #ffffff;
+}
