@@ -6,12 +6,22 @@
   width: 80%;  
 }
 
-.buttonAdd, .buttonRemove {
+.buttonAdd, .buttonRemove, .buttonSave, .buttonSelectorDeadline {
   position: relative;
   right: 0;
   width: 24px;
   height: 24px;
   border-radius: 15%;
+}
+
+.buttonSave:hover, .buttonSelectorDeadline:hover {
+  background-color: #158038;  
+  cursor: pointer;  
+  fill: #ffffff;  
+}
+
+.buttonSelectorDeadline{
+  margin: 1em;
 }
 
 .buttonAdd:hover {
@@ -29,7 +39,8 @@
 .addTask {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 10rem;
@@ -46,4 +57,45 @@
   100%{
     scale: 100%;
   }
+}
+
+.buttonSave {
+  margin: 1%;
+  position: absolute;
+  top: 0;
+}
+
+.inputs{
+  display: flex;
+  align-items: center;
+  height: 2em;
+  width: 50%;
+  background-color: #ffffff;
+  
+}
+
+.inputDescriptionNewTask {
+  width: 100%;
+  padding-left: 1em;
+}
+
+.inputDeadlineNewTask{
+  position: relative;  
+  height: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.addTask input{
+  border: none;
+  outline: none;
+}
+
+.selectorDeadline {
+  position: absolute;
+  top: 100%;
+  left: 15%;
 }
