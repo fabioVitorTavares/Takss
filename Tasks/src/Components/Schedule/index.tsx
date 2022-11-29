@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
 import { TTarefas } from '../Types/types'
-import { VscDiffAdded } from 'react-icons/vsc'
+import { VscDiffAdded, VscSave, VscDiffRemoved } from 'react-icons/vsc'
 import './style.css'
 
 
@@ -93,6 +93,8 @@ export function Schedule() {
     setDays([...days.filter(day => day.id != idDay), newDay])
   }
 
+  const [addTask, setAddTask] = useState<boolean>(false)
+
   return (
     <div className='schedule'>
       <Calendar date={date} setDate={setDate} />
@@ -106,7 +108,19 @@ export function Schedule() {
           />
         ))
       }
-      <VscDiffAdded className='buttonAdd'/>
+      {
+        addTask ?
+        <VscDiffRemoved className='buttonRemove' onClick={() => setAddTask(false)} />
+        :
+        <VscDiffAdded className='buttonAdd' onClick={() => setAddTask(true)} />
+      }
+      {addTask &&
+        <form className='addTask'>
+          <input type="text" />
+          <input type="date" />
+          <VscSave />
+        </form>
+      }
     </div>
   )
 }

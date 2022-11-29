@@ -6,7 +6,9 @@
   width: 80%;  
 }
 
-.buttonAdd {
+.buttonAdd, .buttonRemove {
+  position: relative;
+  right: 0;
   width: 24px;
   height: 24px;
   border-radius: 15%;
@@ -16,4 +18,32 @@
   background-color: #1912a7;  
   cursor: pointer;  
   fill: #ffffff;
+}
+
+.buttonRemove:hover {
+  background-color: #dd1717;  
+  cursor: pointer;  
+  fill: #ffffff;
+}
+
+.addTask {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 10rem;
+  background-color: #ceceed;
+  margin-top: 10px; 
+  opacity: 0.9; 
+  animation: expand 0.3s ease;
+}
+
+@keyframes expand {
+  0%{
+    scale: 30%;
+  }  
+  100%{
+    scale: 100%;
+  }
 }
