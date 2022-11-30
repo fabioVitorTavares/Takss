@@ -9,6 +9,12 @@ export function App() {
   
   return (
     <div className="app">
+       <header className='header'>
+        <div>
+          <span>Tasks</span>
+        </div>
+        <span>Perfil</span>
+      </header>
       <Schedule/>
     </div>    
   )

@@ -3,8 +3,8 @@ import { Calendar } from '../Calendar'
 import { Task } from '../Task'
 import { TTarefas } from '../Types/types'
 import { VscDiffAdded, VscSave, VscDiffRemoved, VscCalendar } from 'react-icons/vsc'
-import './style.css'
 import { MinCalendar } from '../MinCalendar'
+import './style.css'
 
 
 const dias = [
@@ -98,8 +98,19 @@ export function Schedule() {
   }
 
   const saveNewTask = (descriptionNewTask:string | null, dateNewTaske:string) => {
-    /* const newDay: TTarefas = days.find(day => day.id == idDay) as TTarefas */
-
+    const newDay: TTarefas = days.find(day => day.date == date.toLocaleDateString()) as TTarefas
+    newDay.tasks.push({
+      id: String(newDay.tasks.length),
+      description: descriptionNewTask as string,
+      deadline: dateNewTaske,
+      dateCreated: date.toLocaleDateString(),
+      dateCompleted: '',
+      status: 'Pending',
+    })
+    setDays([...days.filter(day => day.date != date.toLocaleDateString()), newDay])
+    setSelectorDeadlineOpen(false)
+    setAddTask(false)
+    console.log(newDay);
   }
 
   const [addTask, setAddTask] = useState<boolean>(false)
@@ -108,6 +119,7 @@ export function Schedule() {
 
   return (
     <div className='schedule'>
+     
       <Calendar date={date} setDate={setDate} />
       {
         days.map(day => day.date == date.toLocaleDateString() && day.tasks.map(
@@ -136,7 +148,8 @@ export function Schedule() {
             <VscCalendar className='buttonSelectorDeadline' onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)} />
             {
               selectorDeadlineOpen &&
-              <div className='selectorDeadline'>                    
+              <div className='selectorDeadline'> 
+                <span className='square'></span>                
                 <MinCalendar  date={deadlineNewTask} setDate={setDeadlineNewTask}/>
               </div>
             }

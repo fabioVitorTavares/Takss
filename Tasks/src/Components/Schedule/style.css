@@ -96,6 +96,13 @@
 
 .selectorDeadline {
   position: absolute;
-  top: 100%;
+  top: 115%;
   left: 15%;
 }
+
+.square {
+  border-radius: 25% 0 150% 0;
+  background-color: #040404;
+  z-index: 0;
+}
+
