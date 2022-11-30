@@ -6,7 +6,7 @@
   width: 80%;  
 }
 
-.buttonAdd, .buttonRemove, .buttonSave, .buttonSelectorDeadline {
+.btAdd, .btRemove, .btSave, .btSelectorDeadline {
   position: relative;
   right: 0;
   width: 24px;
@@ -14,23 +14,23 @@
   border-radius: 15%;
 }
 
-.buttonSave:hover, .buttonSelectorDeadline:hover {
+.btSave:hover, .btSelectorDeadline:hover {
   background-color: #158038;  
   cursor: pointer;  
   fill: #ffffff;  
 }
 
-.buttonSelectorDeadline{
+.btSelectorDeadline{
   margin: 1em;
 }
 
-.buttonAdd:hover {
+.btAdd:hover {
   background-color: #1912a7;  
   cursor: pointer;  
   fill: #ffffff;
 }
 
-.buttonRemove:hover {
+.btRemove:hover {
   background-color: #dd1717;  
   cursor: pointer;  
   fill: #ffffff;
@@ -59,7 +59,7 @@
   }
 }
 
-.buttonSave {
+.btSave {
   margin: 1%;
   position: absolute;
   top: 0;

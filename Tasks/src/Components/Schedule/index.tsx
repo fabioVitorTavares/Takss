@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
 import { TTarefas } from '../Types/types'
-import { VscDiffAdded, VscSave, VscDiffRemoved, VscCalendar } from 'react-icons/vsc'
+import { VscDiffAdded, VscSave, VscDiffRemoved, VscCalendar, VscAdd, VscChromeMinimize } from 'react-icons/vsc'
 import { MinCalendar } from '../MinCalendar'
 import './style.css'
 
@@ -133,9 +133,9 @@ export function Schedule() {
       }
       {
         addTask ?
-        <VscDiffRemoved className='buttonRemove' onClick={() => setAddTask(false)} />
+        <VscChromeMinimize className='buttonRemove' onClick={() => setAddTask(false)} />
         :
-        <VscDiffAdded className='buttonAdd' onClick={() => setAddTask(true)} />
+        <VscAdd className='buttonAdd' onClick={() => setAddTask(true)} />
       }
       {
       addTask &&
