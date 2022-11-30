@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react'
 
 export function Task({task, changeStatus, removeTask}: TypeTask) {
 
-  const [optionsVisible, setOptionsVisible] = useState<Boolean>(false)
   
+
   const btTrash = (
     <VscTrash
       className='bt btTrash'
@@ -56,15 +56,20 @@ export function Task({task, changeStatus, removeTask}: TypeTask) {
       return task.status == 'Completed' ? {backgroundColor: '#1b9916'} : {}
   }
 
-  const visible = ({animation: 'visible 1s ease'})
-  const invisible = ({animation: 'invisible 2s ease'})
+  const visible = ({animation: 'visible 1s ease', opacity: 1}) 
+  const invisible = ({animation: 'invisible 1s ease', opacity: 0})
 
+  const [optionsVisible, setOptionsVisible] = useState<Boolean>(false)
+  const [styleOptions, setStyleOptions] = useState<object>(invisible)
 
- 
+  useEffect(() => {
+    console.log(styleOptions);
+
+  }, [styleOptions])
 
   const optionsTask = (
     <div className='optionsTask'
-      style={optionsVisible? visible: invisible}
+      style={styleOptions}
     >        
         {btInfo}
         {btTrash}
@@ -78,10 +83,24 @@ export function Task({task, changeStatus, removeTask}: TypeTask) {
     <div
       className='task'
       style={backgroundColorTask()}
-      onMouseOver={() => setOptionsVisible(true)}
-      onMouseOut={() => setOptionsVisible(false)}
+      onMouseOver={
+        () => {
+          !optionsVisible && setStyleOptions(visible),
+          setOptionsVisible(true)
+          setTimeout(() => {
+              setStyleOptions({opacity: 1})
+          },1000)
+        }        
+      }
+      onMouseOut={() => {
+          setStyleOptions(invisible),
+          setTimeout(() => {
+            setStyleOptions({opacity: 0})
+          }, 1000)
+        }
+      }
     >
-      {optionsVisible && optionsTask}
+      {optionsTask}      
       {descriptionTask}     
     </div>    
   )
