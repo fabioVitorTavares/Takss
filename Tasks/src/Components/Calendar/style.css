@@ -1,4 +1,5 @@
 .calendar {
+  position: relative;
   background-color: lightslategray;
   width: 100%;
   height: 10rem;
@@ -6,3 +7,21 @@
   display: flex;
 }
 
+.calendar {
+  height: min-content;
+  padding: 1em;
+  display: flex;
+}
+
+.titleCalendar {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentDate {
+  position: absolute;
+  top: 0.2em;
+  right: 0.4em;
+}

@@ -63,36 +63,90 @@ export function MinCalendar({ date, setDate }: TDate) {
     setDate(new Date(date.getFullYear()-1, date.getMonth(), 1))
   }
 
+  const styleNumber = (day: string) => {
+    return day == String(date.getDate()) ? {backgroundColor: '#0821ad'} : {}
+  }
+
+  const clickNumber = (day: string) => {
+    const newDate = new Date(date.getFullYear(), date.getMonth(), Number(day))
+    day != "" && setDate(newDate)
+  }
+
+  const numbers = (
+    <div
+      className='numbers'
+    > 
+      {
+        numbersOfDays
+          .map(day =>
+            <span
+              className={day != "" ? 'numbersSpan' : ''}
+              key={Math.random()}
+              style={styleNumber(day)}
+              onClick={() =>clickNumber(day)}>              
+              {day}
+            </span>
+          )
+      }
+    </div>
+  )
+
+  const btNextMonth = (
+    <AiOutlineCaretRight
+      onClick={nextMonth}
+      className='selectors'
+    />
+  )
+
+  const btNextYear = (
+    <AiOutlineCaretRight
+      onClick={nextYear}
+      className='selectors'
+    />
+  )
+
+  const btMonthPrevious = (
+    <AiOutlineCaretLeft
+      onClick={monthPrevious}
+      className='selectors'
+    />
+  )
+
+  const btYearPrevious = (
+    <AiOutlineCaretLeft
+      onClick={yearPrevious}
+      className='selectors'
+    />
+  )
+
   return (
     <div className='minCalendar'>
       <div className='monthYearWeek'>
         <div className='monthYear'>
           <span className='selectMonth'>
-            <AiOutlineCaretLeft onClick={monthPrevious} className='selectors'/>
+            {btMonthPrevious}
               {months[date.getMonth()][0]}
-            <AiOutlineCaretRight onClick={nextMonth} className='selectors'/>
+            {btNextMonth}
           </span>
           <span className='selectYear'>
-            <AiOutlineCaretLeft onClick={yearPrevious} className='selectors'/>          
+            {btYearPrevious}       
               {date.getFullYear()}
-            <AiOutlineCaretRight onClick={nextYear} className='selectors'/>          
+            {btNextYear}
           </span>
         </div>
         <div className='week'>
-          {days.map(day => <span key={Math.random()}>{day[0]}</span>)} 
+          {
+            days.map(day =>
+              <span
+                key={Math.random()}
+              >
+                {day[0]}
+              </span>)
+          } 
         </div>
       </div>
       
-      <div className='numbers'> 
-        {numbersOfDays.map(day =>
-          <span
-            className={day != "" ? 'numbersSpan' : ''}
-            key={Math.random()}
-            style={day == String(date.getDate()) ? { backgroundColor: '#0821ad'}:{}  }
-            onClick={() => day != "" && setDate((new Date(date.getFullYear(), date.getMonth(), Number(day))))}>              
-            {day}
-          </span>)}
-      </div>
+      {numbers}
     </div>
   )
 }

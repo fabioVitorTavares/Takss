@@ -149,7 +149,7 @@ export function Schedule() {
             {
               selectorDeadlineOpen &&
               <div className='selectorDeadline'> 
-                <span className='square'></span>                
+                               
                 <MinCalendar  date={deadlineNewTask} setDate={setDeadlineNewTask}/>
               </div>
             }

@@ -60,9 +60,6 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
       return task.status == 'Completed' ? {backgroundColor: '#1b9916'} : {}
   }
 
-
-  
-
   const optionsTask = (
     <div className='optionsTask'>
       <div className='btsOptionsTask'>
