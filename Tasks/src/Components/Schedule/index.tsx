@@ -32,7 +32,7 @@ const dias = [
   },
   {
     id: '2',
-    date: '29/11/2022',
+    date: '01/12/2022',
     tasks: [
       {
         id: '1',
@@ -40,7 +40,7 @@ const dias = [
         dateCreated: '29/11/2022',
         dateCompleted: '',
         deadline: '29/11/2022',
-        description: 'Tarefas 2.1'
+        description: 'Tarefa de quita'
       },
       {
         id: '2',
@@ -48,7 +48,7 @@ const dias = [
         dateCreated: '29/11/2022',
         dateCompleted: '',
         deadline: '29/11/2022',
-        description: 'Tarefas 2.2'
+        description: 'Quinta a tarde'
       }
     ]
   }
