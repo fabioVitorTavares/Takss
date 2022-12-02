@@ -122,11 +122,12 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
     >
       {optionsTask}      
       {descriptionTask}
-      <ModalConfirm        
-        description={modalDescription}
-        confirm={modalConfirm}
-        visible={modalVisible}
-      />
+      {modalVisible &&
+        <ModalConfirm
+          description={modalDescription}
+          confirm={modalConfirm}        
+        />
+      }
     </div>    
   )
 }

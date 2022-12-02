@@ -12,13 +12,9 @@
   border-radius: 0.3em;
   background-color: #474040;
   z-index: 2;
-
-}
-
-.modalConfirm::before{
   animation: visible 1s ease;
-
 }
+
 
 .descriptionModal {
   position: relative;
@@ -49,6 +45,7 @@
   background-color: #444242;
   outline: 0.1em solid #ffffff;
 }
+
 
 @keyframes visible {  
   0% {

@@ -117,10 +117,16 @@ export function Schedule() {
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
 
+  
+
+
   return (
     <div className='schedule'>
      
-      <Calendar date={date} setDate={setDate} />
+      <Calendar
+        date={date}
+        setDate={setDate}
+      />
       {
         days.map(day => day.date == date.toLocaleDateString() && day.tasks.map(
           task => <Task
@@ -133,9 +139,9 @@ export function Schedule() {
       }
       {
         addTask ?
-        <VscChromeMinimize className='buttonRemove' onClick={() => setAddTask(false)} />
+        <VscChromeMinimize className='btRemove' onClick={() => setAddTask(false)} />
         :
-        <VscAdd className='buttonAdd' onClick={() => setAddTask(true)} />
+        <VscAdd className='btAdd' onClick={() => setAddTask(true)} />
       }
       {
       addTask &&
@@ -145,7 +151,7 @@ export function Schedule() {
           </div>
           <div className='inputDeadlineNewTask' title='Deadline'>
             <p>{ deadlineNewTask.toLocaleDateString() }</p>
-            <VscCalendar className='buttonSelectorDeadline' onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)} />
+            <VscCalendar className='btSelectorDeadline' onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)} />
             {
               selectorDeadlineOpen &&
               <div className='selectorDeadline'> 
@@ -154,7 +160,7 @@ export function Schedule() {
               </div>
             }
           </div>            
-          <VscSave className='buttonSave' onClick={()=> saveNewTask(inputDescription.current.value, deadlineNewTask.toLocaleDateString())}/>          
+          <VscSave className='btSave' onClick={()=> saveNewTask(inputDescription.current.value, deadlineNewTask.toLocaleDateString())}/>          
         </div>
       }
     </div>
