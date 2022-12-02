@@ -1,18 +1,23 @@
 .modalConfirm {
-  visibility: hidden;
-  color: #ffffff;
   position: absolute;
+  width: 40%;
+  color: #ffffff;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  width: fit-content;
   height: fit-content;
   padding: 1em 0.5em 0.5em 0.5em;
   border-radius: 0.3em;
   background-color: #474040;
   z-index: 2;
+
+}
+
+.modalConfirm::before{
+  animation: visible 1s ease;
+
 }
 
 .descriptionModal {
@@ -20,6 +25,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .btsModalConfirm {
@@ -42,4 +48,22 @@
   cursor: pointer;
   background-color: #444242;
   outline: 0.1em solid #ffffff;
+}
+
+@keyframes visible {  
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }  
+}
+
+@keyframes invisible { 
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  } 
 }

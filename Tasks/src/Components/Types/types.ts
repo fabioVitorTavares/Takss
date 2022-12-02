@@ -27,5 +27,6 @@ export type TTarefas = {
 
 export type TModal = {
   description: string,
-  confirm: Function
+  confirm: Function,
+  visible: boolean,
 }

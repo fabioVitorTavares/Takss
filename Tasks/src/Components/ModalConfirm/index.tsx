@@ -1,10 +1,12 @@
 import { TModal } from '../Types/types'
 import './style.css'
 
-export function ModalConfirm({description, confirm}: TModal, ) {
+export function ModalConfirm({description, confirm, visible}: TModal, ) {
 
   return (    
-    <div className='modalConfirm'>
+    <div className='modalConfirm'
+      style={{visibility: visible ? 'visible' : 'hidden'}}
+    >
       <h3 className='descriptionModal'>{description}</h3>
       <div className='btsModalConfirm'>
         <button
