@@ -139,9 +139,9 @@ export function Schedule() {
       }
       {
         addTask ?
-        <VscChromeMinimize className='btRemove' onClick={() => setAddTask(false)} />
+        <VscChromeMinimize className='bt btRemove' onClick={() => setAddTask(false)} />
         :
-        <VscAdd className='btAdd' onClick={() => setAddTask(true)} />
+        <VscAdd className='bt btAdd' onClick={() => setAddTask(true)} />
       }
       {
       addTask &&
