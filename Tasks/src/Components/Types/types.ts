@@ -24,3 +24,8 @@ export type TTarefas = {
   date: string,
   tasks: TTask[]
 }
+
+export type TModal = {
+  description: string,
+  confirm: Function
+}

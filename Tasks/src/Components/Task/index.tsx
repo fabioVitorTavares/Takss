@@ -3,11 +3,13 @@ import { BsInfo } from 'react-icons/bs'
 import { TypeTask } from '../Types/types'
 import { VscCheck, VscDebugRestart, VscTrash } from 'react-icons/vsc'
 import { useState } from 'react'
+import { ModalConfirm } from '../ModalConfirm'
 
 
 export function Task({ task, changeStatus, removeTask }: TypeTask) {
 
   const [opacityInfos, setOpacityInfos] = useState<number>(0)
+
 
   const btTrash = (
     <VscTrash
@@ -72,13 +74,20 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   )
 
 
+
+
   return (
     <div
       className='task'
       style={backgroundColorTask()}      
     >
       {optionsTask}      
-      {descriptionTask}   
+      {descriptionTask}
+      <ModalConfirm
+        /* style={} */
+        description={"Task Completed?"}
+        confirm={() => console.log()}
+      />
     </div>    
   )
 }
