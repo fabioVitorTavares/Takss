@@ -16,14 +16,6 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   console.log(modalDescription, modalConfirm, modalVisible);
 
  
-  
-  const btInfo = (
-    <BsInfo
-      className='bt btInfo'
-      onClick={() => setOpacityInfos(opacityInfos ? 0 : 1)}
-    />
-  )
-
   const infos = (
     <span className='infos'
       style={{ opacity: `${opacityInfos}` }}
@@ -35,6 +27,16 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
       <p>Deadline {task.deadline}</p>
       {task.status == 'Completed' && <p>Completed {task.dateCompleted}</p>}
     </span>
+  )
+  
+  const btInfo = (
+    <>
+      <BsInfo
+        className='bt btInfo'
+        onClick={() => setOpacityInfos(opacityInfos ? 0 : 1)}
+      />
+      {infos}
+    </>
   )
 
   const confirmTrash = (ok: Boolean) => {
@@ -108,7 +110,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
         {btTrash}
         {task.status == 'Pending' ? btCheck : btUndo}        
       </div>       
-      {infos}
+      
     </div>
   )
 
