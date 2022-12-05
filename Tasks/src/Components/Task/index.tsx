@@ -47,7 +47,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
       className='bt btTrash'
       title='Delete'
       onClick={() => {
-        setModalDescription("Delete Task?")
+        setModalDescription('Delete Task?')
         setModalVisible(true)
         setModalConfirm(() => confirmTrash)
       }}

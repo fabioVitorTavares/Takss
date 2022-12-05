@@ -147,7 +147,7 @@ export function Schedule() {
       addTask &&
         <div className='addTask' >
           <div className='inputs'>
-              <input className='inputDescriptionNewTask' type="text" ref={inputDescription} />
+              <input className='inputDescriptionNewTask' type='text' ref={inputDescription} />
           </div>
           <div className='inputDeadlineNewTask' title='Deadline'>
             <p>{ deadlineNewTask.toLocaleDateString() }</p>

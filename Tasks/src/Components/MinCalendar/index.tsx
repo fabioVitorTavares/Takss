@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
-import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai";
-import { TDate } from "../Types/types";
+import { useEffect, useState } from 'react';
+import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
+import { TDate } from '../Types/types';
 import './style.css'
 
 const numeros = new Array<string>(42).fill('1')
 const months = [
-  ["January", "Janeiro"],
-  ["February", "Fevereiro"],
-  ["March", "Março"],
-  ["April", "Abril"],
-  ["May", "Maio"],
-  ["June", "Junho"],
-  ["July", "Julho"],
-  ["August", "Agosto"],
-  ["September", "Setembro"],
-  ["October", "Outubro"],
-  ["November", "Novembro"],
-  ["December", "Dezembro"]
+  ['January', 'Janeiro'],
+  ['February', 'Fevereiro'],
+  ['March', 'Março'],
+  ['April', 'Abril'],
+  ['May', 'Maio'],
+  ['June', 'Junho'],
+  ['July', 'Julho'],
+  ['August', 'Agosto'],
+  ['September', 'Setembro'],
+  ['October', 'Outubro'],
+  ['November', 'Novembro'],
+  ['December', 'Dezembro']
 ]
 
 const days = [
-  ["S", "D"],
-  ["M", "S"],
-  ["T", "T"],
-  ["W", "Q"],
-  ["T", "Q"],
-  ["F", "S"],
-  ["S", "S"]    
+  ['S', 'D'],
+  ['M', 'S'],
+  ['T', 'T'],
+  ['W', 'Q'],
+  ['T', 'Q'],
+  ['F', 'S'],
+  ['S', 'S']    
 ]
 
 export function MinCalendar({ date, setDate }: TDate) {
@@ -69,7 +69,7 @@ export function MinCalendar({ date, setDate }: TDate) {
 
   const clickNumber = (day: string) => {
     const newDate = new Date(date.getFullYear(), date.getMonth(), Number(day))
-    day != "" && setDate(newDate)
+    day != '' && setDate(newDate)
   }
 
   const numbers = (
@@ -80,7 +80,7 @@ export function MinCalendar({ date, setDate }: TDate) {
         numbersOfDays
           .map(day =>
             <span
-              className={day != "" ? 'numbersSpan' : ''}
+              className={day != '' ? 'numbersSpan' : ''}
               key={Math.random()}
               style={styleNumber(day)}
               onClick={() =>clickNumber(day)}>              
