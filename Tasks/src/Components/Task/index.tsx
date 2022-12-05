@@ -94,7 +94,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   )
 
   const descriptionTask = (
-    <h2 className='descriptionTask'>{ task.description }</h2>
+    <h3 className='descriptionTask'>{ task.description }</h3>
   )
 
   const backgroundColorTask = () => {
