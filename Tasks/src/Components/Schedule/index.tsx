@@ -56,12 +56,15 @@ const dias = [
 
 
 export function Schedule() {
-
+  
   const inputDescription = useRef(null)
-
+  
   const [date, setDate] = useState<Date>(new Date())
   const [days, setDays] = useState<TTarefas[]>(dias)
-
+  const [addTaskOpen, setAddTask] = useState<boolean>(false)
+  const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
+  const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
+  
   const nextDay = () => {
     setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
   }
@@ -113,9 +116,51 @@ export function Schedule() {
     console.log(newDay);
   }
 
-  const [addTask, setAddTask] = useState<boolean>(false)
-  const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
-  const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
+  const btNewTask = (
+    <button
+    className='btNewTask'
+    onClick={() => setAddTask(!addTaskOpen)}>
+      New Task
+    </button>
+  )
+  
+  const addTask = (
+    <div className='addTask' >
+      <div className='inputs'>
+        <input
+          className='inputDescriptionNewTask'
+          type='text'
+          ref={inputDescription}
+        />
+        <div
+          className='inputDeadlineNewTask'
+          title='Deadline'
+        >
+          <p>Deadline {deadlineNewTask.toLocaleDateString()}</p>
+          <VscCalendar
+            className='btSelectorDeadline'
+            onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)}
+          />
+          {
+            selectorDeadlineOpen &&
+            <div className='selectorDeadline'>                              
+              <MinCalendar
+                date={deadlineNewTask}
+                setDate={setDeadlineNewTask}
+              />
+            </div>
+          }
+        </div>            
+      </div>
+      <button
+        className='btSave'
+        onClick={() => saveNewTask(inputDescription.current.value, deadlineNewTask.toLocaleDateString())}
+        >
+        Save
+      </button>          
+    </div>
+  )
+
 
   
 
@@ -137,32 +182,8 @@ export function Schedule() {
           />
         ))
       }
-      <button
-        className='btNewTask'
-        onClick={() => setAddTask(!addTask)}>
-        New Task
-      </button>
-      
-      {
-      addTask &&
-        <div className='addTask' >
-          <div className='inputs'>
-              <input className='inputDescriptionNewTask' type='text' ref={inputDescription} />
-          </div>
-          <div className='inputDeadlineNewTask' title='Deadline'>
-            <p>{ deadlineNewTask.toLocaleDateString() }</p>
-            <VscCalendar className='btSelectorDeadline' onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)} />
-            {
-              selectorDeadlineOpen &&
-              <div className='selectorDeadline'> 
-                               
-                <MinCalendar  date={deadlineNewTask} setDate={setDeadlineNewTask}/>
-              </div>
-            }
-          </div>            
-          <VscSave className='btSave' onClick={()=> saveNewTask(inputDescription.current.value, deadlineNewTask.toLocaleDateString())}/>          
-        </div>
-      }
+      {btNewTask}      
+      {addTaskOpen && addTask}
     </div>
   )
 }
