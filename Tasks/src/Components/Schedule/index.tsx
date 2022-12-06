@@ -65,6 +65,8 @@ export function Schedule() {
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
   
+  
+
   const nextDay = () => {
     setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
   }

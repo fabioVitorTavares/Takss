@@ -1,3 +1,13 @@
+:root {
+  --c1: #E8F1F2;
+  --c2: #d9dcdf;
+  --c3: #23353d;
+  --c4: #7a7f85;
+  --c5: #4c4f52;
+  --c6: #3aa309; 
+}
+
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -12,10 +22,15 @@
   justify-content: center;  
 }
 
+body {
+  background-color: var(--c2);
+}
+
 .header {
+  color: var(--c1);
   height: 4em;
   margin-bottom: 2em;
-  background-color: #8d9595;
+  background-color: var(--c4);
   width: 100%;
   display: flex;
   align-items: center;

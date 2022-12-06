@@ -1,7 +1,7 @@
 .modalConfirm {
   position: absolute;
   width: 40%;
-  color: #ffffff;
+  color: var(--c1);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -10,7 +10,7 @@
   height: fit-content;
   padding: 1em 0.5em 0.5em 0.5em;
   border-radius: 0.3em;
-  background-color: #474040;
+  background-color: var(--c5);
   z-index: 2;
   animation: visible 1s ease;
 }
@@ -33,7 +33,7 @@
 }
 
 .btCancel, .btConfirm {
-  color: #ffffff;
+  color: var(--c1);
   background-color: #252525;
   border: none;
   border-radius: 0.3em;
