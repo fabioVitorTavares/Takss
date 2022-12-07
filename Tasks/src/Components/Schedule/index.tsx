@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
 import { TTarefas } from '../Types/types'
-import { VscDiffAdded, VscSave, VscDiffRemoved, VscCalendar, VscAdd, VscChromeMinimize } from 'react-icons/vsc'
+import { VscCalendar } from 'react-icons/vsc'
 import { MinCalendar } from '../MinCalendar'
 import './style.css'
 
@@ -57,14 +57,14 @@ const dias = [
 
 export function Schedule() {
   
-  const inputDescription = useRef(null)
+  
   
   const [date, setDate] = useState<Date>(new Date())
   const [days, setDays] = useState<TTarefas[]>(dias)
   const [addTaskOpen, setAddTask] = useState<boolean>(false)
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
-  
+  const [descriptionNewTask, setDescriptionNewTask] = useState<string>('');
   
 
   const nextDay = () => {
@@ -125,6 +125,28 @@ export function Schedule() {
       New Task
     </button>
   )
+
+  const selectorDeadline = (
+    <div className='selectorDeadline'>                              
+      <MinCalendar
+        date={deadlineNewTask}
+        setDate={setDeadlineNewTask}
+      />
+    </div>
+  );
+
+  const btSave = (
+    <button
+      className='btSave'
+      onClick={
+        () => {
+          saveNewTask(descriptionNewTask, deadlineNewTask.toLocaleDateString())
+        }
+      }
+      >
+      Save
+    </button> 
+  );
   
   const addTask = (
     <div className='addTask' >
@@ -132,7 +154,7 @@ export function Schedule() {
         <input
           className='inputDescriptionNewTask'
           type='text'
-          ref={inputDescription}
+          onChange={(e) => setDescriptionNewTask(e.target.value)}
         />
         <div
           className='inputDeadlineNewTask'
@@ -143,28 +165,13 @@ export function Schedule() {
             className='btSelectorDeadline'
             onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)}
           />
-          {
-            selectorDeadlineOpen &&
-            <div className='selectorDeadline'>                              
-              <MinCalendar
-                date={deadlineNewTask}
-                setDate={setDeadlineNewTask}
-              />
-            </div>
-          }
+          {selectorDeadlineOpen && selectorDeadline}
         </div>            
       </div>
-      <button
-        className='btSave'
-        onClick={() => saveNewTask(inputDescription.current.value, deadlineNewTask.toLocaleDateString())}
-        >
-        Save
-      </button>          
+      {btSave}         
     </div>
   )
 
-
-  
 
 
   return (
@@ -172,14 +179,18 @@ export function Schedule() {
      
       <Calendar
         date={date}
-        setDate={setDate}
+        setDate={setDate}        
       />
       {
         days.map(day => day.date == date.toLocaleDateString() && day.tasks.map(
           task => <Task
             key={task.id}
             task={task}
-            changeStatus={(newStatus: string, dateCompleted:string) => changeStatus(day.id, task.id, newStatus, dateCompleted)}
+            changeStatus={
+              (newStatus: string, dateCompleted: string) => {
+                changeStatus(day.id, task.id, newStatus, dateCompleted)
+              }
+            }
             removeTask={() => removeTask(day.id, task.id)}
           />
         ))
