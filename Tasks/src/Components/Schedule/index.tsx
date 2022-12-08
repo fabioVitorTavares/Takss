@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
-import { TTarefas } from '../Types/types'
+import { TTarefas, TTask } from '../Types/types'
 import { VscCalendar } from 'react-icons/vsc'
 import { MinCalendar } from '../MinCalendar'
+import { TDay } from '../Types/types';
 import './style.css'
 
 
-const dias = [
-  {
-    id: '1',
+const db = [{
+  id: 0,
+  days: [{
     date: '28/11/2022',
     tasks: [
       {
-        id: '1',
+        id: 0,
         status: 'Pending',
         dateCreated: '01/11/2022',
         dateCompleted: '',
@@ -21,7 +22,7 @@ const dias = [
         description: 'Tarefas 1.1'
       },
       {
-        id: '2',
+        id: 1,
         status: 'Pending',
         dateCreated: '01/11/2022',
         dateCompleted: '',
@@ -30,12 +31,11 @@ const dias = [
       }
     ]
   },
-  {
-    id: '2',
+  {     
     date: '05/12/2022',
     tasks: [
       {
-        id: '1',
+        id: 0,
         status: 'Pending',
         dateCreated: '29/11/2022',
         dateCompleted: '',
@@ -43,24 +43,34 @@ const dias = [
         description: 'Tarefa de quita'
       },
       {
-        id: '2',
+        id: 1,
         status: 'Pending',
         dateCreated: '29/11/2022',
         dateCompleted: '',
         deadline: '29/11/2022',
         description: 'Quinta a tarde'
       }
-    ]
-  }
-]
+    ]   
+  }]
+}]
+
 
 
 export function Schedule() {
   
-  
-  
+  const [userID, setUserId] = useState<number>(0); 
   const [date, setDate] = useState<Date>(new Date())
-  const [days, setDays] = useState<TTarefas[]>(dias)
+  const [tasks, setTasks] = useState<TTask[]>([]);
+
+
+  useEffect(() => {
+    const currentUser = db.find(e => e.id == userID);
+    const currentDay = currentUser?.days.find(e => e.date == date.toLocaleDateString());
+    const currentTasks = currentDay?.tasks
+    setTasks(currentTasks as TTask[]);
+  }, [date, userID])
+  
+
   const [addTaskOpen, setAddTask] = useState<boolean>(false)
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
@@ -90,19 +100,23 @@ export function Schedule() {
     key.key == 'ArrowUp' && dayPreviousWeek();
   })
 
-  const changeStatus = (idDay: string, idTask: string, newStatus: string, dateCompleted: string) => {
-    const newDay: TTarefas = days.find(day => day.id == idDay) as TTarefas
-    newDay.tasks.map(task => task.id == idTask &&(task.status = newStatus, task.dateCompleted = dateCompleted))
-    setDays([...days.filter(day => day.id != idDay), newDay])    
+  const changeStatus = (idTask: number, newStatus: string, dateCompleted: string) => {
+    const newTasks = tasks?.map((e) => {
+      if (e?.id == idTask) {
+        e.status = newStatus
+        e.dateCompleted = dateCompleted
+      }  
+      return e as TTask      
+    }) 
+    setTasks(newTasks)    
   }
 
-  const removeTask = (idDay: string, idTask: string) => {
-    const newDay: TTarefas = days.find(day => day.id == idDay) as TTarefas
-    newDay.tasks = newDay.tasks.filter(task => task.id != idTask)
-    setDays([...days.filter(day => day.id != idDay), newDay])
+  const removeTask = (idTask: number) => {
+    const newTasks = tasks?.filter( e => e.id != idTask)
+    setTasks(newTasks) 
   }
 
-  const saveNewTask = (descriptionNewTask:string | null, dateNewTaske:string) => {
+ /*  const saveNewTask = (descriptionNewTask:string | null, dateNewTaske:string) => {
     const newDay: TTarefas = days.find(day => day.date == date.toLocaleDateString()) as TTarefas
     newDay.tasks.push({
       id: String(newDay.tasks.length),
@@ -116,7 +130,7 @@ export function Schedule() {
     setSelectorDeadlineOpen(false)
     setAddTask(false)
     console.log(newDay);
-  }
+  } */
 
   const btNewTask = (
     <button
@@ -138,11 +152,11 @@ export function Schedule() {
   const btSave = (
     <button
       className='btSave'
-      onClick={
+     /*  onClick={
         () => {
           saveNewTask(descriptionNewTask, deadlineNewTask.toLocaleDateString())
         }
-      }
+      } */
       >
       Save
     </button> 
@@ -182,18 +196,18 @@ export function Schedule() {
         setDate={setDate}        
       />
       {
-        days.map(day => day.date == date.toLocaleDateString() && day.tasks.map(
+        tasks?.map(
           task => <Task
             key={task.id}
             task={task}
             changeStatus={
               (newStatus: string, dateCompleted: string) => {
-                changeStatus(day.id, task.id, newStatus, dateCompleted)
+                changeStatus(task.id, newStatus, dateCompleted)
               }
             }
-            removeTask={() => removeTask(day.id, task.id)}
+            removeTask={() => removeTask(task.id)}
           />
-        ))
+        )
       }
       {btNewTask}      
       {addTaskOpen && addTask}

@@ -13,7 +13,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   const [modalConfirm, setModalConfirm] = useState<Function>(()=>{})
   const [modalDescription, setModalDescription] = useState<string>('')
   
-  console.log(modalDescription, modalConfirm, modalVisible);
+  
 
  
   const infos = (
