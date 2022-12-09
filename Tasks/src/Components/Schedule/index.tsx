@@ -57,18 +57,18 @@ const db = [{
 
 
 export function Schedule() {
+  console.log(db);
   
   const [userID, setUserId] = useState<number>(0); 
   const [date, setDate] = useState<Date>(new Date())
   const [tasks, setTasks] = useState<TTask[]>([]);
-
 
   useEffect(() => {
     const currentUser = db.find(e => e.id == userID);
     const currentDay = currentUser?.days.find(e => e.date == date.toLocaleDateString());
     const currentTasks = currentDay?.tasks
     setTasks(currentTasks as TTask[]);
-  }, [date, userID])
+  }, [date, userID, db])
   
 
   const [addTaskOpen, setAddTask] = useState<boolean>(false)
@@ -116,7 +116,7 @@ export function Schedule() {
     setTasks(newTasks) 
   }
 
- /*  const saveNewTask = (descriptionNewTask:string | null, dateNewTaske:string) => {
+/*   const saveNewTask = (descriptionNewTask:string | null, dateNewTaske:string) => {
     const newDay: TTarefas = days.find(day => day.date == date.toLocaleDateString()) as TTarefas
     newDay.tasks.push({
       id: String(newDay.tasks.length),
@@ -130,8 +130,8 @@ export function Schedule() {
     setSelectorDeadlineOpen(false)
     setAddTask(false)
     console.log(newDay);
-  } */
-
+  }
+ */
   const btNewTask = (
     <button
     className='btNewTask'
