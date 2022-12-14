@@ -58,26 +58,29 @@ const db = [{
 
 export function Schedule() {
   
-  const [userID, setUserId] = useState<number>(0);
-  const [date, setDate] = useState<Date>(new Date())
-  const [tasks, setTasks] = useState<TTask[]>([]);
-  
-  console.log(db.find(e => e.id == 0)?.days
-  .find(e => e.date == date.toLocaleDateString())
-    ?.tasks)
-  
-  useEffect(() => {
-    const currentUser = db.find(e => e.id == userID);
-    const currentDay = currentUser?.days.find(e => e.date == date.toLocaleDateString());
-    const currentTasks = currentDay?.tasks
-    setTasks(currentTasks as TTask[]);
-  }, [date, userID, db])
-
-
   const [addTaskOpen, setAddTask] = useState<boolean>(false)
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
   const [descriptionNewTask, setDescriptionNewTask] = useState<string>('');
+  const [userID, setUserId] = useState<number>(0);
+  const [date, setDate] = useState<Date>(new Date())
+  const [tasks, setTasks] = useState<TTask[]>([]);
+  
+ 
+  const updateCurrentTasks = () => {
+    const currentUser = db.find(e => e.id == userID);
+    const currentDay = currentUser?.days.find(e => e.date == date.toLocaleDateString());
+    const currentTasks = currentDay?.tasks
+    setTasks(currentTasks as TTask[]);
+    console.log('updates');
+  }
+  
+  useEffect(() => {
+    updateCurrentTasks()
+    console.log('useEffect');
+  }, [date, userID, db])
+
+
 
 
   const nextDay = () => {
@@ -104,14 +107,13 @@ export function Schedule() {
   })
 
   const changeStatus = (idTask: number, newStatus: string, dateCompleted: string) => {
-    const newTasks = tasks?.map((e) => {
-      if (e?.id == idTask) {
-        e.status = newStatus
+    db.find(e => e.id == 0)?.days
+      .find(e => e.date == date.toLocaleDateString())
+      ?.tasks.map(e => e.id && idTask ? (
+        e.status = newStatus,
         e.dateCompleted = dateCompleted
-      }
-      return e as TTask
-    })
-    setTasks(newTasks)
+      ) : {})
+    updateCurrentTasks()
   }
 
   const removeTask = (idTask: number) => {
@@ -128,10 +130,31 @@ export function Schedule() {
       deadline,
       description
     }
+    console.log(newTask);
 
-    db.find(e => e.id == 0)?.days
-      .find(e => e.date == date.toLocaleDateString())
-      ?.tasks.push(newTask)
+    const userAddTask = db.find(e => e.id == 0)
+    const dateAddTask = userAddTask?.days.find(e => e.date == date.toLocaleDateString())
+    
+    if (dateAddTask) {
+      db.find(e => e.id == 0)?.days.find(e => e.date == date.toLocaleDateString())?.tasks.push(newTask)
+      const oldTasks = db.find(e => e.id == 0)?.days.find(e => e.date == date.toLocaleDateString())?.tasks
+      const newDate = {
+        date: date.toLocaleDateString(),
+        tasks: [oldTasks, newTask]
+      }
+
+      db.find(e => e.id == 0)?.days.push(newDate as TDay)
+      console.log('1');
+    }
+    else {
+      const newDate = {
+        date: date.toLocaleDateString(),
+        tasks: [newTask]
+      }
+      db.find(e => e.id == 0)?.days.push(newDate)
+    }
+    console.log('2');
+    updateCurrentTasks()
   }
 
   const btNewTask = (

@@ -56,8 +56,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
     />
   )
 
-  const confirmChangeStatus = (ok: boolean) => {
-    console.log('chamou');
+  const confirmChangeStatus = (ok: boolean) => {    
     ok && changeStatus('Completed', new Date().toLocaleDateString())
     setModalVisible(false)
   }
