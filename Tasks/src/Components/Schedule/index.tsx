@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
 import { TTarefas, TTask } from '../Types/types'
@@ -8,13 +8,15 @@ import { TDay } from '../Types/types';
 import './style.css'
 
 
-const db = [{
-  id: 0,
-  days: [{
-    date: '13/12/2022',
+
+
+const db = [
+  {
+    date: '16/12/2022',
     tasks: [
       {
         id: 0,
+        date: '16/12/2022',
         status: 'Pending',
         dateCreated: '13/12/2022',
         dateCompleted: '',
@@ -23,6 +25,7 @@ const db = [{
       },
       {
         id: 1,
+        date: '16/12/2022',
         status: 'Pending',
         dateCreated: '01/11/2022',
         dateCompleted: '',
@@ -32,10 +35,11 @@ const db = [{
     ]
   },
   {
-    date: '05/12/2022',
+    date: '17/12/2022',
     tasks: [
       {
         id: 0,
+        date: '17/12/2022',
         status: 'Pending',
         dateCreated: '29/11/2022',
         dateCompleted: '',
@@ -44,6 +48,7 @@ const db = [{
       },
       {
         id: 1,
+        date: '17/12/2022',
         status: 'Pending',
         dateCreated: '29/11/2022',
         dateCompleted: '',
@@ -51,116 +56,69 @@ const db = [{
         description: 'Quinta a tarde'
       }
     ]
-  }]
 }]
 
-
-
 export function Schedule() {
-  
-  const [addTaskOpen, setAddTask] = useState<boolean>(false)
+
+  const [addTaskOpen, setAddTaskOpen] = useState<boolean>(false)
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
-  const [descriptionNewTask, setDescriptionNewTask] = useState<string>('');
-  const [userID, setUserId] = useState<number>(0);
+  const [descriptionNewTask, setDescriptionNewTask] = useState<string>('')
   const [date, setDate] = useState<Date>(new Date())
   const [tasks, setTasks] = useState<TTask[]>([]);
-  
- 
-  const updateCurrentTasks = () => {
-    const currentUser = db.find(e => e.id == userID);
-    const currentDay = currentUser?.days.find(e => e.date == date.toLocaleDateString());
-    const currentTasks = currentDay?.tasks
-    setTasks(currentTasks as TTask[]);
-    console.log('updates');
-  }
-  
+  const [stateSchedule, setStateSchedule] = useState<Boolean>(false)
+  const inputDescriptionNewTask = useRef<HTMLInputElement>(null)
+
   useEffect(() => {
-    updateCurrentTasks()
-    console.log('useEffect');
-  }, [date, userID, db])
-
-
-
-
-  const nextDay = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
-  }
-
-  const dayPrevious = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1))
-  }
-
-  const dayPreviousWeek = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7))
-  }
-
-  const nextDayWeek = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7))
-  }
-
-  document.addEventListener('keydown', (key) => {
-    key.key == 'ArrowRight' && nextDay();
-    key.key == 'ArrowLeft' && dayPrevious();
-    key.key == 'ArrowDown' && nextDayWeek();
-    key.key == 'ArrowUp' && dayPreviousWeek();
-  })
-
+    const currentDay = db.find(e => e.date == date.toLocaleDateString());
+    const currentTasks = currentDay?.tasks ?? []
+    setTasks(currentTasks);   
+    setSelectorDeadlineOpen(false)
+    setAddTaskOpen(false)
+  }, [date, stateSchedule])
+  
   const changeStatus = (idTask: number, newStatus: string, dateCompleted: string) => {
-    db.find(e => e.id == 0)?.days
-      .find(e => e.date == date.toLocaleDateString())
-      ?.tasks.map(e => e.id && idTask ? (
+    db.find(e => e.date == date.toLocaleDateString())
+      ?.tasks.map(e => e.id == idTask ? (
         e.status = newStatus,
         e.dateCompleted = dateCompleted
-      ) : {})
-    updateCurrentTasks()
+      ) : {})  
+    setStateSchedule(!stateSchedule)
   }
 
   const removeTask = (idTask: number) => {
-    const newTasks = tasks?.filter(e => e.id != idTask)
-    setTasks(newTasks)
+    const newArrayTasks = db.find(e => e.date == date.toLocaleDateString())
+    ?.tasks.filter(e => e.id != idTask) as TTask[]
+    db.map(e => e.date == date.toLocaleDateString() && (
+      e.tasks = newArrayTasks
+    ))    
+    setStateSchedule(!stateSchedule)
   }
 
   const saveNewTask = (description: string, deadline: string) => {
     const newTask = {
-      id: Math.random()*1000,
+      id: Math.random() * 1000,
+      date: date.toLocaleDateString(),
       status: 'Pending',
-      dateCreated: date.toLocaleDateString(),
+      dateCreated: new Date().toLocaleDateString(),
       dateCompleted: '',
       deadline,
       description
     }
-    console.log(newTask);
 
-    const userAddTask = db.find(e => e.id == 0)
-    const dateAddTask = userAddTask?.days.find(e => e.date == date.toLocaleDateString())
-    
-    if (dateAddTask) {
-      db.find(e => e.id == 0)?.days.find(e => e.date == date.toLocaleDateString())?.tasks.push(newTask)
-      const oldTasks = db.find(e => e.id == 0)?.days.find(e => e.date == date.toLocaleDateString())?.tasks
-      const newDate = {
-        date: date.toLocaleDateString(),
-        tasks: [oldTasks, newTask]
-      }
-
-      db.find(e => e.id == 0)?.days.push(newDate as TDay)
-      console.log('1');
-    }
-    else {
-      const newDate = {
-        date: date.toLocaleDateString(),
-        tasks: [newTask]
-      }
-      db.find(e => e.id == 0)?.days.push(newDate)
-    }
-    console.log('2');
-    updateCurrentTasks()
+    db.map(e => e.date == date.toLocaleDateString() && (
+      e.tasks.push(newTask)
+    ))
+    inputDescriptionNewTask.current?.value && (inputDescriptionNewTask.current.value = '')
+    setDescriptionNewTask('')
+    setDeadlineNewTask(date)
+    setStateSchedule(!stateSchedule)    
   }
-
+  
   const btNewTask = (
     <button
       className='btNewTask'
-      onClick={() => setAddTask(!addTaskOpen)}>
+      onClick={() => setAddTaskOpen(!addTaskOpen)}>
       New Task
     </button>
   )
@@ -191,6 +149,7 @@ export function Schedule() {
     <div className='addTask' >
       <div className='inputs'>
         <input
+          ref={inputDescriptionNewTask}
           className='inputDescriptionNewTask'
           type='text'
           onChange={(e) => setDescriptionNewTask(e.target.value)}
@@ -215,23 +174,23 @@ export function Schedule() {
 
   return (
     <div className='schedule'>
-
       <Calendar
         date={date}
         setDate={setDate}
       />
       {
         tasks?.map(
-          task => <Task
-            key={task.id}
-            task={task}
-            changeStatus={
-              (newStatus: string, dateCompleted: string) => {
-                changeStatus(task.id, newStatus, dateCompleted)
+          task =>
+            <Task
+              key={task.id}
+              task={task}
+              changeStatus={
+                (newStatus: string, dateCompleted: string) => {
+                  changeStatus(task.id, newStatus, dateCompleted)
+                }
               }
-            }
-            removeTask={() => removeTask(task.id)}
-          />
+              removeTask={() => removeTask(task.id)}
+            />
         )
       }
       {btNewTask}
@@ -239,3 +198,32 @@ export function Schedule() {
     </div>
   )
 }
+
+      /*   const nextDay = () => {
+          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
+        }
+      
+        const dayPrevious = () => {
+          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1))
+        }
+      
+        const dayPreviousWeek = () => {
+          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7))
+        }
+      
+        const nextDayWeek = () => {
+          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7))
+        }
+      
+        function keysFunctions(key){
+          return {
+            ArrowRight: nextDay(),
+            ArrowLeft: dayPrevious(),
+            ArrowDown: nextDayWeek(),
+            ArrowUp: dayPreviousWeek()
+          }
+        }
+      
+        document.addEventListener('keydown', (key) => {
+          const keyFunctions = keysFunctions(key.key)
+        }) */

@@ -38,6 +38,7 @@ export type TDay = {
 
 export type TTask = {
   id: number,
+  date: string,
   status: string,
   dateCreated: string,
   dateCompleted: string,

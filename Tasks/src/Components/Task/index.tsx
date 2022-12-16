@@ -8,14 +8,13 @@ import { ModalConfirm } from '../ModalConfirm'
 
 export function Task({ task, changeStatus, removeTask }: TypeTask) {
   
+  
+
   const [opacityInfos, setOpacityInfos] = useState<number>(0)
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const [modalConfirm, setModalConfirm] = useState<Function>(()=>{})
   const [modalDescription, setModalDescription] = useState<string>('')
   
-  
-
- 
   const infos = (
     <span className='infos'
       style={{ opacity: `${opacityInfos}` }}
@@ -108,13 +107,9 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
         {btInfo}
         {btTrash}
         {task.status == 'Pending' ? btCheck : btUndo}        
-      </div>       
-      
+      </div>     
     </div>
   )
-
-
-
 
   return (
     <div
