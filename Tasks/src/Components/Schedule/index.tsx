@@ -19,53 +19,7 @@ const daysOfWeek = [
 ]
 
 
-const db = [
-  {
-    date: '16/12/2022',
-    tasks: [
-      {
-        id: 0,
-        date: '16/12/2022',
-        status: 'Pending',
-        dateCreated: '13/12/2022',
-        dateCompleted: '',
-        deadline: '28/11/2022',
-        description: 'Tarefas 1.1'
-      },
-      {
-        id: 1,
-        date: '16/12/2022',
-        status: 'Pending',
-        dateCreated: '01/11/2022',
-        dateCompleted: '',
-        deadline: '28/11/2022',
-        description: 'Tarefas 1.2'
-      }
-    ]
-  },
-  {
-    date: '17/12/2022',
-    tasks: [
-      {
-        id: 0,
-        date: '17/12/2022',
-        status: 'Pending',
-        dateCreated: '29/11/2022',
-        dateCompleted: '',
-        deadline: '29/11/2022',
-        description: 'Tarefa de quita'
-      },
-      {
-        id: 1,
-        date: '17/12/2022',
-        status: 'Pending',
-        dateCreated: '29/11/2022',
-        dateCompleted: '',
-        deadline: '29/11/2022',
-        description: 'Quinta a tarde'
-      }
-    ]
-}]
+
 
 export function Schedule() {
 
@@ -78,53 +32,57 @@ export function Schedule() {
   const [stateSchedule, setStateSchedule] = useState<Boolean>(false)
   const inputDescriptionNewTask = useRef<HTMLInputElement>(null)
 
+  const fetchInBackEnd = async () => {    
+    const url = `https://tasks-api-production-ad11.up.railway.app/?date=${date.toLocaleDateString()}`
+    const currentDay = await fetch(url)
+    const currentTasks = await currentDay.json() ?? []
+    setTasks(currentTasks);         
+  }
   useEffect(() => {
-    const currentDay = db.find(e => e.date == date.toLocaleDateString());
-    const currentTasks = currentDay?.tasks ?? []
-    setTasks(currentTasks);   
+    fetchInBackEnd()
     setSelectorDeadlineOpen(false)
     setAddTaskOpen(false)
   }, [date, stateSchedule])
   
-  const changeStatus = (idTask: number, newStatus: string, dateCompleted: string) => {
-    db.find(e => e.date == date.toLocaleDateString())
-      ?.tasks.map(e => e.id == idTask ? (
-        e.status = newStatus,
-        e.dateCompleted = dateCompleted
-      ) : {})  
-    setStateSchedule(!stateSchedule)
-  }
+  // const changeStatus = (idTask: number, newStatus: string, dateCompleted: string) => {
+  //   db.find(e => e.date == date.toLocaleDateString())
+  //     ?.tasks.map(e => e.id == idTask ? (
+  //       e.status = newStatus,
+  //       e.dateCompleted = dateCompleted
+  //     ) : {})  
+  //   setStateSchedule(!stateSchedule)
+  // }
 
-  const removeTask = (idTask: number) => {
-    const newArrayTasks = db.find(e => e.date == date.toLocaleDateString())
-    ?.tasks.filter(e => e.id != idTask) as TTask[]
-    db.map(e => e.date == date.toLocaleDateString() && (
-      e.tasks = newArrayTasks
-    ))    
-    setStateSchedule(!stateSchedule)
-  }
+  // const removeTask = (idTask: number) => {
+  //   const newArrayTasks = db.find(e => e.date == date.toLocaleDateString())
+  //   ?.tasks.filter(e => e.id != idTask) as TTask[]
+  //   db.map(e => e.date == date.toLocaleDateString() && (
+  //     e.tasks = newArrayTasks
+  //   ))    
+  //   setStateSchedule(!stateSchedule)
+  // }
 
-  const saveNewTask = (description: string, deadline: string) => {
-    const newTask = {
-      id: Math.random() * 1000,
-      date: date.toLocaleDateString(),
-      status: 'Pending',
-      dateCreated: new Date().toLocaleDateString(),
-      dateCompleted: '',
-      deadline,
-      description
-    }
+  // const saveNewTask = (description: string, deadline: string) => {
+  //   const newTask = {
+  //     id: Math.random() * 1000,
+  //     date: date.toLocaleDateString(),
+  //     status: 'Pending',
+  //     dateCreated: new Date().toLocaleDateString(),
+  //     dateCompleted: '',
+  //     deadline,
+  //     description
+  //   }
 
-    db.map(e => e.date == date.toLocaleDateString() && (
-      e.tasks.push(newTask)
-    ))
-    inputDescriptionNewTask.current?.value && (
-      inputDescriptionNewTask.current.value = ''
-    )
-    setDescriptionNewTask('')
-    setDeadlineNewTask(date)
-    setStateSchedule(!stateSchedule)    
-  }
+  //   db.map(e => e.date == date.toLocaleDateString() && (
+  //     e.tasks.push(newTask)
+  //   ))
+  //   inputDescriptionNewTask.current?.value && (
+  //     inputDescriptionNewTask.current.value = ''
+  //   )
+  //   setDescriptionNewTask('')
+  //   setDeadlineNewTask(date)
+  //   setStateSchedule(!stateSchedule)    
+  // }
   
   const btNewTask = (
     <button
