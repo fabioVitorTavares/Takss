@@ -106,7 +106,7 @@ export function Schedule() {
       className='btSave'
       onClick={
         () => {
-          saveNewTask(descriptionNewTask, deadlineNewTask.toLocaleDateString())
+          //saveNewTask(descriptionNewTask, deadlineNewTask.toLocaleDateString())
         }
       }
     >
@@ -184,10 +184,10 @@ export function Schedule() {
               task={task}
               changeStatus={
                 (newStatus: string, dateCompleted: string) => {
-                  changeStatus(task.id, newStatus, dateCompleted)
+                  //changeStatus(task.id, newStatus, dateCompleted)
                 }
               }
-              removeTask={() => removeTask(task.id)}
+            removeTask={() => console.log('')/*removeTask(task.id)*/}
             />
         )
       }
