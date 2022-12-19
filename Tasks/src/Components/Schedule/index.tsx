@@ -1,13 +1,22 @@
 import { useEffect, useState, useRef } from 'react'
 import { Calendar } from '../Calendar'
 import { Task } from '../Task'
-import { TTarefas, TTask } from '../Types/types'
+import { TTask } from '../Types/types'
 import { VscCalendar } from 'react-icons/vsc'
 import { MinCalendar } from '../MinCalendar'
-import { TDay } from '../Types/types';
+import { BiRightArrow, BiLeftArrow } from 'react-icons/bi'
 import './style.css'
 
 
+const daysOfWeek = [
+  ['Domingo','Sunday'],
+  ['Segunda','Monday'],
+  ['Terça','Tuesday'],
+  ['Quarta','Wednesday'],
+  ['Quinta','Thursday'],
+  ['Sexta','Friday'],
+  ['Sábado','Sarturday'],
+]
 
 
 const db = [
@@ -109,7 +118,9 @@ export function Schedule() {
     db.map(e => e.date == date.toLocaleDateString() && (
       e.tasks.push(newTask)
     ))
-    inputDescriptionNewTask.current?.value && (inputDescriptionNewTask.current.value = '')
+    inputDescriptionNewTask.current?.value && (
+      inputDescriptionNewTask.current.value = ''
+    )
     setDescriptionNewTask('')
     setDeadlineNewTask(date)
     setStateSchedule(!stateSchedule)    
@@ -170,6 +181,13 @@ export function Schedule() {
     </div>
   )
 
+  const nextDay = () => {
+    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
+  }
+
+  const dayPrevious = () => {
+    setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1))
+  }
 
 
   return (
@@ -178,6 +196,20 @@ export function Schedule() {
         date={date}
         setDate={setDate}
       />
+      <div className='titleCalendar'>
+        <BiLeftArrow
+          onClick={dayPrevious}
+        />
+        <div className='titleCalendarContent'>
+          <h1>{daysOfWeek[date.getDay()][0]}</h1>
+          <span className='currentDate'>
+            {date.toLocaleDateString()}
+          </span>
+        </div>
+        <BiRightArrow
+          onClick={nextDay}
+        />
+      </div>
       {
         tasks?.map(
           task =>
@@ -199,13 +231,7 @@ export function Schedule() {
   )
 }
 
-      /*   const nextDay = () => {
-          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
-        }
-      
-        const dayPrevious = () => {
-          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1))
-        }
+      /*   
       
         const dayPreviousWeek = () => {
           setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7))
