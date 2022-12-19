@@ -190,6 +190,14 @@ export function Schedule() {
   }
 
 
+
+  /* document.addEventListener('keydown', (key) => {
+    console.log(key.keyCode)
+    key.keyCode == 37 && nextDay()
+    key.keyCode == 39 && dayPrevious()
+  }) */
+
+
   return (
     <div className='schedule'>
       <Calendar
@@ -230,26 +238,3 @@ export function Schedule() {
     </div>
   )
 }
-
-      /*   
-      
-        const dayPreviousWeek = () => {
-          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7))
-        }
-      
-        const nextDayWeek = () => {
-          setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7))
-        }
-      
-        function keysFunctions(key){
-          return {
-            ArrowRight: nextDay(),
-            ArrowLeft: dayPrevious(),
-            ArrowDown: nextDayWeek(),
-            ArrowUp: dayPreviousWeek()
-          }
-        }
-      
-        document.addEventListener('keydown', (key) => {
-          const keyFunctions = keysFunctions(key.key)
-        }) */
