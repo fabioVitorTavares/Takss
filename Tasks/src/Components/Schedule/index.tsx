@@ -44,7 +44,7 @@ export function Schedule() {
   }, [date, stateSchedule])
   
   const changeStatus = async (idTask: number, newStatus: string, dateCompleted: string) => {
-    const url = 'http://localhost:5431'
+    const url = 'https://tasks-api-production-ad11.up.railway.app/'
 
     await fetch(url,
     {
@@ -65,7 +65,7 @@ export function Schedule() {
   }
 
   const removeTask = async (idTask: number) => {
-    const url = 'http://localhost:5431'
+    const url = 'https://tasks-api-production-ad11.up.railway.app/'
 
     await fetch(url,
     {
