@@ -34,8 +34,7 @@ export function Schedule() {
     const url = `https://tasks-api-production-ad11.up.railway.app/?date=${date.toLocaleDateString()}`
     const currentDay = await fetch(url)
     const currentTasks = await currentDay.json() ?? []
-    setTasks(currentTasks);  
-    console.log(currentTasks);
+    setTasks(currentTasks);    
   }
 
   useEffect(() => {
@@ -45,7 +44,7 @@ export function Schedule() {
   }, [date, stateSchedule])
   
   const changeStatus = async (idTask: number, newStatus: string, dateCompleted: string) => {
-    const url = 'https://tasks-api-production-ad11.up.railway.app/'
+    const url = 'http://localhost:5431'
 
     await fetch(url,
     {
@@ -53,21 +52,36 @@ export function Schedule() {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      method: "PUT",
-      body: JSON.stringify({date, idTask, newStatus, dateCompleted})
-      })
-    console.log('update status');
+      method: 'PUT',      
+      body: JSON.stringify(
+        {
+          date: date.toLocaleDateString(),
+          idTask,
+          newStatus,
+          dateCompleted
+        })
+    })
     setStateSchedule(!stateSchedule)
   }
 
-  // const removeTask = (idTask: number) => {
-  //   const newArrayTasks = db.find(e => e.date == date.toLocaleDateString())
-  //   ?.tasks.filter(e => e.id != idTask) as TTask[]
-  //   db.map(e => e.date == date.toLocaleDateString() && (
-  //     e.tasks = newArrayTasks
-  //   ))    
-  //   setStateSchedule(!stateSchedule)
-  // }
+  const removeTask = async (idTask: number) => {
+    const url = 'http://localhost:5431'
+
+    await fetch(url,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE',      
+      body: JSON.stringify(
+        {
+          date: date.toLocaleDateString(),
+          idTask          
+        })
+    })
+    setStateSchedule(!stateSchedule)
+  }
 
   const saveNewTask = async (description: string, deadline: string) => {
     const newTask = {      
@@ -205,7 +219,9 @@ export function Schedule() {
                   changeStatus(task.id, newStatus, dateCompleted)
                 }
               }
-            removeTask={() => console.log('')/*removeTask(task.id)*/}
+              removeTask={
+                () => removeTask(task.id)
+              }
             />
         )
       }
