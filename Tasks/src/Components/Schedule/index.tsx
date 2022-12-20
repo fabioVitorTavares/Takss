@@ -18,10 +18,8 @@ const daysOfWeek = [
   ['Sábado','Sarturday'],
 ]
 
-
-
-
 export function Schedule() {
+  
 
   const [addTaskOpen, setAddTaskOpen] = useState<boolean>(false)
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
@@ -31,13 +29,15 @@ export function Schedule() {
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [stateSchedule, setStateSchedule] = useState<Boolean>(false)
   const inputDescriptionNewTask = useRef<HTMLInputElement>(null)
-
+  
   const fetchInBackEnd = async () => {    
     const url = `https://tasks-api-production-ad11.up.railway.app/?date=${date.toLocaleDateString()}`
     const currentDay = await fetch(url)
     const currentTasks = await currentDay.json() ?? []
-    setTasks(currentTasks);         
+    setTasks(currentTasks);  
+    console.log(currentTasks);
   }
+
   useEffect(() => {
     fetchInBackEnd()
     setSelectorDeadlineOpen(false)
@@ -62,27 +62,38 @@ export function Schedule() {
   //   setStateSchedule(!stateSchedule)
   // }
 
-  // const saveNewTask = (description: string, deadline: string) => {
-  //   const newTask = {
-  //     id: Math.random() * 1000,
-  //     date: date.toLocaleDateString(),
-  //     status: 'Pending',
-  //     dateCreated: new Date().toLocaleDateString(),
-  //     dateCompleted: '',
-  //     deadline,
-  //     description
-  //   }
+  const saveNewTask = async (description: string, deadline: string) => {
+    const newTask = {      
+      date: date.toLocaleDateString(),
+      status: 'Pending',
+      dateCreated: new Date().toLocaleDateString(),
+      dateCompleted: '',
+      deadline,
+      description
+    }
 
-  //   db.map(e => e.date == date.toLocaleDateString() && (
-  //     e.tasks.push(newTask)
-  //   ))
-  //   inputDescriptionNewTask.current?.value && (
-  //     inputDescriptionNewTask.current.value = ''
-  //   )
-  //   setDescriptionNewTask('')
-  //   setDeadlineNewTask(date)
-  //   setStateSchedule(!stateSchedule)    
-  // }
+    const url = 'https://tasks-api-production-ad11.up.railway.app/'
+    await fetch(url,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(newTask)
+    })
+    
+    inputDescriptionNewTask.current?.value && (
+      inputDescriptionNewTask.current.value = ''
+    )
+
+    fetchInBackEnd()
+    setDescriptionNewTask('')
+    setDeadlineNewTask(date)
+    setStateSchedule(!stateSchedule) 
+    
+    console.log('add');
+  }
   
   const btNewTask = (
     <button
@@ -106,7 +117,7 @@ export function Schedule() {
       className='btSave'
       onClick={
         () => {
-          //saveNewTask(descriptionNewTask, deadlineNewTask.toLocaleDateString())
+          saveNewTask(descriptionNewTask, deadlineNewTask.toLocaleDateString())
         }
       }
     >
