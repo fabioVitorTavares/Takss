@@ -44,14 +44,21 @@ export function Schedule() {
     setAddTaskOpen(false)
   }, [date, stateSchedule])
   
-  // const changeStatus = (idTask: number, newStatus: string, dateCompleted: string) => {
-  //   db.find(e => e.date == date.toLocaleDateString())
-  //     ?.tasks.map(e => e.id == idTask ? (
-  //       e.status = newStatus,
-  //       e.dateCompleted = dateCompleted
-  //     ) : {})  
-  //   setStateSchedule(!stateSchedule)
-  // }
+  const changeStatus = async (idTask: number, newStatus: string, dateCompleted: string) => {
+    const url = 'https://tasks-api-production-ad11.up.railway.app/'
+
+    await fetch(url,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "PUT",
+      body: JSON.stringify({date, idTask, newStatus, dateCompleted})
+      })
+    console.log('update status');
+    setStateSchedule(!stateSchedule)
+  }
 
   // const removeTask = (idTask: number) => {
   //   const newArrayTasks = db.find(e => e.date == date.toLocaleDateString())
@@ -195,7 +202,7 @@ export function Schedule() {
               task={task}
               changeStatus={
                 (newStatus: string, dateCompleted: string) => {
-                  //changeStatus(task.id, newStatus, dateCompleted)
+                  changeStatus(task.id, newStatus, dateCompleted)
                 }
               }
             removeTask={() => console.log('')/*removeTask(task.id)*/}
