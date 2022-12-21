@@ -1,0 +1,28 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  width: 20em;
+  height: 25em;
+  border: 1px solid rgb(51, 47, 47);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.input {
+  padding-left: 1em;
+  margin-left: 0.5em;
+  height: 3em;
+}
+
+.divInput {
+  display: flex;
+  align-items: center;
+}
