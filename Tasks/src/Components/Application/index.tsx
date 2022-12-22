@@ -12,8 +12,14 @@ export function Application() {
         <div>
           <span>Tasks</span>
         </div>
-        <span>Perfil</span>
-        <Link to='/'>Sair</Link>
+        <div>
+          <span>Perfil</span>
+          <Link to='/'>
+            <button>
+              Logout
+            </button>
+          </Link>
+        </div>
       </header>
       <Schedule/>
     </div>    

@@ -1,0 +1,31 @@
+:root {
+  --c1: #E8F1F2;
+  --c2: #d9dcdf;
+  --c3: #23353d;
+  --c4: #7a7f85;
+  --c5: #4c4f52;
+  --c6: #3aa309; 
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  user-select: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

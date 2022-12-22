@@ -1,73 +1,49 @@
-import React from 'react'
-import { FaUser, FaLock } from 'react-icons/fa'
 import './style.css'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-
-
-
-
+import { useNavigate } from 'react-router-dom'
 
 
 export function Home() {
   
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const linkToApplication = (
-    <Link
-      to='/application'>
-      App
-    </Link>
-  )
-  
-  const userLogin = () => {
-    if (user == '1' && password == '1') {
-      navigate('/application')      
-    }
-    else {
-      console.log('Err password');
-    }
-    
-  }
-
-
-  const login = (
-    <div className='login'>
-      <h2>
-        Tasks Management
-      </h2>
-      <div className='divInput'>
-        <FaUser/>
-        <input
-          className='inputUser input'
-          type="text"
-          placeholder='User'
-          onChange={(e) => setUser(e.target.value)}
-        />
-      </div>
-      <div className='divInput'>
-        <FaLock/>
-        <input
-          className='inputPassword input'
-          type="password"
-          placeholder='Password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+  const borderBtnAnimation = (
+    <svg
+      className='borderBtnAnimation'
+    >
+      <polyline
+        className='bg-line'
+        points='-1,-115 0,0 75,0 75,40 0,40 0,0'
+      />
       
-      <button
-        onClick={userLogin}
-      >
-        Enter
-      </button>
-    </div>
+    </svg>
+  )
+
+  const btnLogin = (
+    <button
+      className='btnLogin btn'
+      onClick={() => navigate('/login')}
+    >
+      Login
+      {borderBtnAnimation}
+    </button>
+  )
+
+
+  const btnRegister = (
+    <button
+      className='btnRegister btn'      
+      onClick={()=> navigate('/register')}
+    >
+      Register
+      {borderBtnAnimation}      
+    </button>
   )
 
   return (
     <div className='home'>
-      {login}
-    </div>
+      <h1>Home page</h1>
+      {btnLogin}
+      {btnRegister}      
+    </div>    
   )
 }
