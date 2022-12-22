@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUser, FaLock } from 'react-icons/fa'
 import './style.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 
@@ -9,21 +9,11 @@ import { useState } from 'react'
 
 
 
-
 export function Home() {
-
+  
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
-
-  const userLogin = () => {
-    if (user == '1' && password == '1') {
-      window.location.href = '/application'
-    }
-    else {
-      console.log('Err password');
-    }
-    
-  }
+  const navigate = useNavigate()
 
   const linkToApplication = (
     <Link
@@ -31,6 +21,17 @@ export function Home() {
       App
     </Link>
   )
+  
+  const userLogin = () => {
+    if (user == '1' && password == '1') {
+      navigate('/application')      
+    }
+    else {
+      console.log('Err password');
+    }
+    
+  }
+
 
   const login = (
     <div className='login'>
@@ -67,7 +68,6 @@ export function Home() {
   return (
     <div className='home'>
       {login}
-      {linkToApplication}
     </div>
   )
 }
