@@ -75,48 +75,51 @@ export function Home() {
 
   const resumeHomePage = (
     <p className='resumeHomePage'>
-      Gerencie suas tarefas com uma <br></br> 
-      ferramenta prática e online 
+      Gerencie suas tarefas com uma ferramenta prática e online 
     </p>
   )
 
   const inviteHomePage = (
     <p className='inviteHomePage'>
-      Entre e organize suas tarefas da melhor forma!
+      Entre e organize suas tarefas da melhor maneira!
     </p>
   )
 
   return (
     <div className='home'>
-      <section className='leftSection'>
-        <img
-          className='checklistImg'
-          src={checklistImg}
-          alt='checklist'
-        />
-      </section>
-      <section className='rightSection'>
+      <div className='headerHomePage'>
         <div className='titleAndResume'>
           {titleHomePage}
           {resumeHomePage}
         </div>
-        <div>
-          <p className='ps'>{svgCheck} Usabilidade intuitiva </p>
-          <p className='ps'>{svgCheck} Simples e eficiente </p>
-          <p className='ps'>{svgCheck} Navegação dinâmica </p>
-          <p className='ps'>{svgCheck} Ferramenta organizada </p>
-          <p className='ps'>{svgX} Flags personalizadas </p>
-          <p className='ps'>{svgX} Expiração por prazo </p>
-          <p className='ps'>{svgX} Mobile </p>
-        </div>
-        <div className='btnsHomePage'>
-          {inviteHomePage}
+      </div>
+      <div className='bodyHomePage'>
+        <section className='leftSection'>
+          <img
+            className='checklistImg'
+            src={checklistImg}
+            alt='checklist'
+          />
+        </section>
+        <section className='rightSection'>        
           <div>
-            {btnRegister}  
-            {btnLogin}
+            <p className='ps'>{svgCheck} Usabilidade intuitiva </p>
+            <p className='ps'>{svgCheck} Simples e eficiente </p>
+            <p className='ps'>{svgCheck} Navegação dinâmica </p>
+            <p className='ps'>{svgCheck} Ferramenta organizada </p>
+            <p className='ps'>{svgX} Flags personalizadas </p>
+            <p className='ps'>{svgX} Expiração por prazo </p>
+            <p className='ps'>{svgX} Mobile </p>
           </div>
-        </div>
-      </section>
-    </div>    
+          <div className='btnsHomePage'>
+            {inviteHomePage}
+            <div>
+              {btnRegister}  
+              {btnLogin}
+            </div>
+          </div>
+        </section>'
+      </div>    
+    </div>
   )
 }

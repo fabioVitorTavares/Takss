@@ -1,11 +1,24 @@
 .home {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 
-.btn {
-  
+.headerHomePage {
+  text-align: center;
+}
+
+.bodyHomePage {
+  display: flex;
+  flex-direction: row;
+}
+
+.titleAndResume h1 {
+  font-size: 2.5em;
+}
+
+.btn {  
   border-radius: 0.5em;
   font-size: medium;
   cursor: pointer;
@@ -42,6 +55,7 @@
 .ps {
   display: flex;
   align-items: center;
+  margin-bottom: 0.5em;
 }
 .ps svg {
   margin-right: 0.5em;
@@ -70,3 +84,4 @@
 .btnRegister:hover {
   outline: 0.05em solid #2a2c2b;
 }
+
