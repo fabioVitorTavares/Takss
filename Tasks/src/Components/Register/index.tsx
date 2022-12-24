@@ -8,15 +8,15 @@ export function Register() {
 
   const inputCompleteName = (
     <input
-      className='inputUserName'
+      className='inputUserName inputRegister'
       type="text"
-      placeholder='Complete name'
+      placeholder='Nome'
     />
   )
 
   const inputEmail = (
     <input
-      className='inputUserEmail'
+      className='inputUserEmail inputRegister'
       type="email"
       placeholder='E-mail'
     />
@@ -24,41 +24,43 @@ export function Register() {
 
   const inputUserName = (
     <input
-      className='inputUser'
+      className='inputUser inputRegister'
       type="text"
-      placeholder='User name'
+      placeholder='Usuário'
     />
   )
 
   const inputPassword = (
     <input
-      className='inputPassword'
+      className='inputPassword inputRegister'
       type="password"
-      placeholder='Password'
+      placeholder='Senha'
     />
   )
 
   const inputConfirmPassword = (
     <input
-      className='inputConfirmPassword'
+      className='inputConfirmPassword inputRegister'
       type="password"
-      placeholder='Confirm password'
+      placeholder='Confirme a senha'
     />
   )
 
   const btnCancel = (
     <button
-      onClick={()=> navigate('/')}
+      className='btnRegisterRegister'
+      onClick={()=> navigate('/login')}
     >
-      Cancel
+      Cancelar
     </button>
   )
 
   const btnRegister = (
     <button
+      className='btnRegisterRegister'      
       onClick={()=> navigate('/')}
       >
-      Register
+      Cadastrar
     </button>
   )
 
@@ -70,7 +72,7 @@ export function Register() {
       {inputUserName}
       {inputPassword}
       {inputConfirmPassword}
-      <div>
+      <div className='btnsRegister'>
         {btnCancel}
         {btnRegister}
       </div>

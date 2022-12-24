@@ -1,6 +1,6 @@
 import { FaUser, FaLock } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
 import './style.css'
 
 
@@ -22,7 +22,7 @@ export function Login() {
   )
   
   const userLogin = () => {
-    if (user == '' && password == '') {
+    if (user == 'fabio.furtado' && password == '321') {
       navigate('/application')      
     }
     else {
@@ -30,9 +30,16 @@ export function Login() {
     }    
   }
 
+  const keyEnter = (e: KeyboardEvent) => {
+    e.keyCode == 13 && userLogin()
+  }
+
+  
 
   const login = (
-    <div className='login'>  
+    <div
+      onKeyDown={keyEnter}
+      className='login'>  
       <div className='inputsLogin'>
         <div className='divInput'>
           <FaUser/>
@@ -69,6 +76,9 @@ export function Login() {
       </div>
     </div>
   )
+
+  
+
 
   return (
     <div className='home'>

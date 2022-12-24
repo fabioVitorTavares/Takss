@@ -14,13 +14,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #2225;
+  background-color: var(--c2);
   gap: 3em;
 }
 
 .input {
   padding-left: 1em;
   margin-left: 0.5em;
+  width: 18em;
   height: 3em;
   border-radius: 0.2em;
   outline: none;
