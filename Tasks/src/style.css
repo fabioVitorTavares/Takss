@@ -1,4 +1,5 @@
 :root {
+  --background--color: rgb(233, 233, 233);
   --c1: #E8F1F2;
   --c2: #d9dcdf;
   --c3: #23353d;
@@ -28,4 +29,5 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--background--color);
 }

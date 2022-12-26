@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-color: var(--background--color);
 }
 
 .headerHomePage {
@@ -50,7 +51,7 @@
 }
 
 .imgAvatar {
-  height: 400px;
+  height: 25em;
 }
 
 

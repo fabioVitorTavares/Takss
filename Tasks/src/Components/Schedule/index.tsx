@@ -150,6 +150,7 @@ export function Schedule() {
     <div className='addTask' >
       <div className='inputs'>
         <input
+          autoFocus={true}
           ref={inputDescriptionNewTask}
           className='inputDescriptionNewTask'
           type='text'
@@ -178,14 +179,6 @@ export function Schedule() {
   const dayPrevious = () => {
     setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1))
   }
-
-
-
-  /* document.addEventListener('keydown', (key) => {
-    console.log(key.keyCode)
-    key.keyCode == 37 && nextDay()
-    key.keyCode == 39 && dayPrevious()
-  }) */
 
 
   return (
