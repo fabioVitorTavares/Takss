@@ -49,6 +49,9 @@
   padding-left: 4em;
 }
 
+.imgAvatar {
+  height: 400px;
+}
 
 
 
@@ -85,3 +88,208 @@
   outline: 0.05em solid #2a2c2b;
 }
 
+
+
+.path-check-one {
+  stroke-dasharray: 180;
+  animation: svg-animate-one 10s ease backwards infinite;  
+}
+
+@keyframes svg-animate-one {
+  0% {
+    stroke-dashoffset: 180;
+  }
+  30% {
+    stroke-dashoffset: 180; 
+  }
+  40% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }  
+}
+
+.path-check-two {
+  stroke-dasharray: 180;
+  animation: svg-animate-two 10s ease infinite;
+}
+
+@keyframes svg-animate-two {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  40% {
+    stroke-dashoffset: 180;
+  }
+  50% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.path-x-one {
+  stroke-dasharray: 180;
+  animation: svg-animate-x-one 10s ease infinite;
+}
+
+@keyframes svg-animate-x-one {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  50% {
+    stroke-dashoffset: 180;
+  }
+  55% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.path-x-two {
+  stroke-dasharray: 180;
+  animation: svg-animate-x-two 10s ease infinite;
+}
+
+@keyframes svg-animate-x-two {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  55% {
+    stroke-dashoffset: 180;
+  }
+  60% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.path-check-tree {
+  stroke-dasharray: 180;
+  animation: svg-animate-tree 10s ease infinite;
+  
+}
+
+@keyframes svg-animate-tree {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  60% {
+    stroke-dashoffset: 180;
+  }
+  70% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-one {
+  animation: hidden-rect-one 10s ease infinite;
+}
+
+@keyframes hidden-rect-one {
+  0%{
+    opacity: 0;
+  }
+  10%{
+    opacity: 0;
+  }
+  15%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-two {
+  animation: hidden-rect-two 10s ease infinite;
+}
+
+@keyframes hidden-rect-two {
+  0%{
+    opacity: 0;
+  }
+  15%{
+    opacity: 0;
+  }
+  20%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-tree {
+  animation: hidden-rect-tree 10s ease infinite;
+}
+
+@keyframes hidden-rect-tree {
+  0%{
+    opacity: 0;
+  }
+  20%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-four {
+  animation: hidden-rect-four 10s ease infinite;
+}
+
+@keyframes hidden-rect-four {
+  0%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 0;
+  }
+  30%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
