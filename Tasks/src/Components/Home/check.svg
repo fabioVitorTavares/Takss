@@ -1,0 +1,35 @@
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  width="1080" 
+  zoomAndPan="magnify" 
+  viewBox="0 0 810 809.999993"
+   height="1080" 
+   preserveAspectRatio="xMidYMid meet" 
+   version="1.0">
+   <defs>
+   <filter 
+   x="0%" 
+   y="0%" 
+   width="100%" 
+   height="100%" 
+   id="9a1b995231">
+   <feColorMatrix 
+   values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" color-interpolation-filters="sRGB"/></filter>
+   <filter 
+   x="0%"
+    y="0%" 
+    width="100%" 
+    height="100%" 
+    id="dcf96104e9">
+    <feColorMatrix 
+    values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0.2126 0.7152 0.0722 0 0" color-interpolation-filters="sRGB"/>
+    </filter>
+    <clipPath id="1fadcedc90">
+    <path d="M 81 105.300781 L 729 105.300781 L 729 704.550781 L 81 704.550781 Z M 81 105.300781 " clip-rule="nonzero"/>
+    </clipPath>
+    <image 
+    x="0" 
+    y="0" 
+    width="648" >
+</svg>

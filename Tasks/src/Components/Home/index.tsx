@@ -1,6 +1,7 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import checklistImg from './checklist.jpg'
+import imgHome from './imgHome.svg'
 
 export function Home() {
   
@@ -96,7 +97,7 @@ export function Home() {
         <section className='leftSection'>
           <img
             className='checklistImg'
-            src={checklistImg}
+            src={imgHome}
             alt='checklist'
           />
         </section>
@@ -118,7 +119,7 @@ export function Home() {
             </div>
           </div>
         </section>'
-      </div>    
+      </div>  
     </div>
   )
 }
