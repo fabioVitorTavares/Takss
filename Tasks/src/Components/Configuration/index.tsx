@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { GrConfigure } from 'react-icons/gr'
 import { BsSun, BsMoon } from 'react-icons/bs'
 import iconBr from './img/icon-br.png'
@@ -12,8 +12,9 @@ export function Configuration() {
   const selectorLanguage = useRef(null)
   const refIconBr = useRef(null)
   const refIconEg = useRef(null)
+  const refPanel = useRef(null)
   
-  const [open, setOpen] = useState<Boolean>(false)
+  const [open, setOpen] = useState<Boolean>(true)
   const [theme, setTheme] = useState<String>('light')
   const [language, setLanguage] = useState<String>('br')
   
@@ -70,15 +71,27 @@ export function Configuration() {
     setLanguage('eg')
   }    
 
-  const eventClick =  (e) => {     
-    console.log(e);
+  const closePanel = () => {
+    if(refPanel.current) {
+      const selector: HTMLSpanElement = refPanel.current
+      selector.style.animation = 'closePanel 0.3s ease forwards' 
+    }
+  
+    if (open) {
+      setTimeout(() => setOpen(false), 200)
+    }      
   }
 
+  addEventListener('click', (event) => { 
+    closePanel()
+  })
+    
   const panel = (
-    <div className='panel'
-      onClick={(e) => eventClick(e)}
-    >
-     
+    <div
+      ref={refPanel}
+      className='panel'
+      onClick={(e) => e.stopPropagation()}
+    >     
       <div className='themeSelect'>
         <BsSun
           className='sun'
@@ -117,10 +130,20 @@ export function Configuration() {
     </div>
   )
 
+  const handleClickConfig = (e: any) => {
+    e.stopPropagation()
+    if (open) {
+      closePanel()
+    }  
+    else {
+      setOpen(true)
+    }
+  }
+
   return (
     <div className="configuration">
       <GrConfigure
-        onClick={() => setOpen(!open)}
+        onClick={(e) => handleClickConfig(e) }
       />
       {open && panel}
     </div>
