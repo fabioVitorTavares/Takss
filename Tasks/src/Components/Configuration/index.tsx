@@ -14,7 +14,7 @@ export function Configuration() {
   const refIconEg = useRef(null)
   const refPanel = useRef(null)
   
-  const [open, setOpen] = useState<Boolean>(true)
+  const [open, setOpen] = useState<Boolean>(false)
   const [theme, setTheme] = useState<String>('light')
   const [language, setLanguage] = useState<String>('br')
   
@@ -140,7 +140,7 @@ export function Configuration() {
     }
   }
 
-  
+
   return (
     <div className="configuration">
       <GrConfigure
