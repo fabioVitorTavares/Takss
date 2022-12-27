@@ -1,0 +1,118 @@
+
+.configuration {
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+  z-index: 9999;
+  cursor: pointer;
+  border: 0.2em solid rgb(153, 150, 150);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;  
+  gap: 0.3em;
+  top: 1.5em;
+  right: 1.5em;
+  width: 4.5em;
+  height: fit-content;
+  background-color: rgb(241, 241, 232);
+}
+
+.themeSelect, .languageSelect {
+  height: 32px;
+  position: relative;
+  outline: 0.1em solid gray;
+  background-color: rgb(165, 163, 163);
+  border-radius: 0.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectorTheme {
+  position: absolute;
+  width: 2.1em;
+  height: 2em;
+  border-radius: 0.2em;  
+  background-color: rgb(5, 107, 202); 
+}
+
+@keyframes moveRight {
+  from {
+    left: 0.1em;
+    background-color: rgb(5, 107, 202);    
+  }
+  to{
+    left: 2.4em;
+    background-color: rgb(3, 1, 37);
+  }
+}
+
+
+
+
+@keyframes moveLeft {
+  from {
+    left: 2.4em;
+    background-color: rgb(3, 1, 37);    
+  }
+  to{
+    left: 0em;
+    background-color: rgb(5, 107, 202);
+  }
+}
+
+.selectorLanguage {
+  position: absolute;
+  width: 2.1em;
+  height: 2em;
+  border-radius: 0.2em;
+  left: 0%;
+  top: 50%;
+  transform: translate(0%, -50%);  
+  background-color: rgb(3, 1, 37);
+}
+
+@keyframes moveRightLanguage {
+  from {
+    left: 0;
+  }
+  to{
+    left: 2.4em;
+  }
+}
+
+@keyframes moveLeftLanguage {
+  from {
+    left: 2.4em;
+  }
+  to{
+    left: 0em;
+  }
+}
+
+.sun {
+  z-index: 9999;
+  fill: rgb(206, 209, 9);
+}
+
+.moon {
+  z-index: 9999;
+  fill: rgb(255, 255, 255);
+}
+
+.sun, .moon {
+  margin: 0 0.5em;
+}
+
+.iconEg, .iconBr {
+  z-index: 9999;
+}
