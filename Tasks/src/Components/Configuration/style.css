@@ -23,7 +23,7 @@
   right: 2em;
   width: 4.5em;
   height: fit-content;
-  background-color: rgb(241, 241, 232);
+  background-color: transparent;
   scale: 0.1;
   animation: openPanel 0.3s ease forwards;
 }

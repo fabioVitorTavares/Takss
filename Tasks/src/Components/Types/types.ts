@@ -24,10 +24,6 @@ export type TModal = {
 }
 
 
-export type TUser = {
-  id: number,
-  days: TDay[]
-}
 
 export type TDay = {
   date: string,
@@ -46,3 +42,7 @@ export type TTask = {
   description: string
 }
 
+export type TConfigs = {
+  theme: String,
+  language: String  
+}

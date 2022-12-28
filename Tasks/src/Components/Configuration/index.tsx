@@ -1,22 +1,28 @@
-import { useEffect, useRef, useState } from 'react'
+import { createContext, useContext, useRef, useState } from 'react'
 import { GrConfigure } from 'react-icons/gr'
 import { BsSun, BsMoon } from 'react-icons/bs'
 import iconBr from './img/icon-br.png'
 import iconEg from './img/icon-eg.png'
 import './style.css'
+import { TConfigs } from '../Types/types'
 
 
-export function Configuration() {
+type ConfigurationProps = TConfigs & {
+  setTheme: Function,
+  setLanguage: Function
+}
 
+export function Configuration({theme, language, setTheme, setLanguage}: ConfigurationProps) {
+    
   const selectorTheme = useRef(null)
   const selectorLanguage = useRef(null)
   const refIconBr = useRef(null)
   const refIconEg = useRef(null)
   const refPanel = useRef(null)
   
-  const [open, setOpen] = useState<Boolean>(false)
-  const [theme, setTheme] = useState<String>('light')
-  const [language, setLanguage] = useState<String>('br')
+  const [open, setOpen] = useState<Boolean>(false)  
+  
+  
   
   const setThemeDark = () => {
     if (selectorTheme.current) {
@@ -39,7 +45,7 @@ export function Configuration() {
       const selector: HTMLSpanElement = selectorLanguage.current
       selector.style.animation = 'moveLeftLanguage 1s ease forwards' 
     }
-
+    
     if (refIconEg.current) {
       const selector: HTMLSpanElement = refIconEg.current
       selector.style.opacity = '0.7' 
@@ -49,7 +55,6 @@ export function Configuration() {
       const selector: HTMLSpanElement = refIconBr.current
       selector.style.opacity = '1' 
     }
-    
     setLanguage('br')
   }
 
@@ -58,25 +63,25 @@ export function Configuration() {
       const selector: HTMLSpanElement = selectorLanguage.current
       selector.style.animation = 'moveRightLanguage 1s ease forwards' 
     }
-
+    
     if (refIconEg.current) {
       const selector: HTMLSpanElement = refIconEg.current
       selector.style.opacity = '1' 
     }
-
+    
     if (refIconBr.current) {
       const selector: HTMLSpanElement = refIconBr.current
       selector.style.opacity = '0.7' 
     }
     setLanguage('eg')
   }    
-
+  
   const closePanel = () => {
     if(refPanel.current) {
       const selector: HTMLSpanElement = refPanel.current
       selector.style.animation = 'closePanel 0.3s ease forwards' 
     }
-  
+    
     if (open) {
       setTimeout(() => setOpen(false), 200)
     }      
@@ -85,13 +90,13 @@ export function Configuration() {
   addEventListener('click', (event) => { 
     closePanel()
   })
-    
+  
   const panel = (
     <div
       ref={refPanel}
       className='panel'
       onClick={(e) => e.stopPropagation()}
-    >     
+      >     
       <div className='themeSelect'>
         <BsSun
           className='sun'
@@ -100,11 +105,11 @@ export function Configuration() {
         <BsMoon
           className='moon'          
           onClick={setThemeDark}
-        />
+          />
         <span
           ref={selectorTheme}
           className='selectorTheme'          
-        />
+          />
       </div>
       
       <div className='languageSelect'>
@@ -121,16 +126,17 @@ export function Configuration() {
           className='iconEg'
           onClick={setLanguageEg}
           ref={refIconEg}
-        />
+          />
         <span
           ref={selectorLanguage}
           className='selectorLanguage'          
-        />
+          />
       </div>
     </div>
   )
 
   const handleClickConfig = (e: any) => {
+    
     e.stopPropagation()
     if (open) {
       closePanel()
@@ -139,14 +145,17 @@ export function Configuration() {
       setOpen(true)
     }
   }
+  
+  
 
-
-  return (
-    <div className="configuration">
-      <GrConfigure
-        onClick={(e) => handleClickConfig(e) }
-      />
-      {open && panel}
-    </div>
+  return (    
+    //<ConfigContext.Provider value={{ theme, language }}>
+      <div className="configuration">
+        <GrConfigure
+          onClick={(e) => handleClickConfig(e) }
+          />
+        {open && panel}
+      </div>
+    //</ConfigContext.Provider>     
   )
 }

@@ -2,12 +2,17 @@ import './style.css'
 import { useNavigate } from 'react-router-dom'
 import imgAvatar from './avatar.svg'
 import { Configuration } from '../Configuration'
+import { Context, ContextType, createContext, useContext, useEffect, useState } from 'react'
+import { TConfigs } from '../Types/types'
 
-export function Home() {
+
+
+
+export function Home({theme, language} : TConfigs) {
   
   const navigate = useNavigate()
 
-
+  
   const svgX = (
     <svg
       width="25px"
@@ -118,6 +123,8 @@ export function Home() {
   
 
   return (
+    
+
     <div className='home'>
       <div className='headerHomePage'>
         <div className='titleAndResume'>
@@ -154,7 +161,6 @@ export function Home() {
           </div>
         </section>'
       </div> 
-      <Configuration/>
     </div>
   )
 }

@@ -1,8 +1,9 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
+import { TConfigs } from '../Types/types'
 
 
-export function Register() {
+export function Register({theme, language} : TConfigs) {
   
   const navigate = useNavigate()
 

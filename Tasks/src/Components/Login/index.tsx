@@ -2,13 +2,14 @@ import { FaUser, FaLock } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { KeyboardEvent, useState } from 'react'
 import './style.css'
+import { TConfigs } from '../Types/types'
 
 
 
 
 
 
-export function Login() {
+export function Login({theme, language} : TConfigs) {
   
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')

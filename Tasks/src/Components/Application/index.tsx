@@ -1,10 +1,11 @@
 import { Schedule } from '../Schedule'
 import { Link } from 'react-router-dom'
 import './style.css'
+import { TConfigs } from '../Types/types'
 
 
 
-export function Application() {  
+export function Application({theme, language} : TConfigs) {  
   
   return (
     <div className='application'>
