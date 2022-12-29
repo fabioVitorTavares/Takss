@@ -18,7 +18,6 @@
   background-color: var(--c2);
   gap: 3em;
   transition: background-color 1s ease;
-
 }
 
 .input {

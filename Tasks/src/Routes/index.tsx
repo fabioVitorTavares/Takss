@@ -4,14 +4,13 @@ import { Login } from '../Components/Login';
 import { Home } from '../Components/Home';
 import { Register } from '../Components/Register';
 import { Configuration } from '../Components/Configuration';
-import { TConfigs } from '../Components/Types/types';
 import { useState } from 'react';
 
 
 export function Routers() {
   
-  const [theme, setTheme] = useState<String>('dark') 
-  const [language, setLanguage] = useState<String>('eg') 
+  const [theme, setTheme] = useState<String>('light') 
+  const [language, setLanguage] = useState<String>('pt') 
 
   console.log(theme, language);
   return (

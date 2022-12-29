@@ -6,21 +6,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
-  padding-bottom: 10em; 
   background-color: var(--background--color);
 }
-
-
 
 .header {
   color: var(--c1);
   height: 4em;
-  margin-bottom: 2em;
+  min-height: 4em;
   background-color: var(--c4);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0em 1em 0em 2em;
+  padding: 0em 4em 0em 2em;
+}
+
+.profileDropDow {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  border: 0.1em solid #000;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.contentProfileDropDow {
+  position: absolute;
+  border: 0.1em solid #000;
+  top: 105%;
+  left: -50%;
+  width: 4em;
+
+  display: flex;
+  flex-direction: column;
 }
