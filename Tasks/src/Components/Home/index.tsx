@@ -53,12 +53,34 @@ export function Home({theme, language} : TConfigs) {
     </svg>
   )
 
+  const t = language == 'pt' ? 0 : 1
+  const texts = {
+    btnLogin: ['Fazer login', 'Sing in'],
+    btnRegister: ['Me cadastrar', 'Register'],
+    titleHomePage: ['Gerenciamento de tarefas', 'Tasks management'],
+    resumeHomePage: [
+      'Gerencie suas tarefas com uma ferramenta prática e online',
+      'Manage your tasks with a practical and online tool'
+    ],
+    inviteHomePage: [
+      'Entre e organize suas tarefas da melhor maneira!',
+      'Enter and organize your tasks in the best way!'
+    ],
+    svgCheck1: ['Usabilidade intuitiva', 'Intuitive usability'],
+    svgCheck2: ['Simples e eficiente', 'Simple and efficient'],
+    svgCheck3: ['Navegação dinâmica', 'Dynamic navigation'],
+    svgCheck4: ['Ferramenta organizada', 'Organized tool'],
+    svgX1: ['Flags personalizadas', 'Custom flags'],
+    svgX2: ['Expiração por prazo', 'Expiration by term'],
+    svgX3: ['Móvel', 'Mobile'],
+  }
+
   const btnLogin = (
     <button
       className='btnLogin btn'
       onClick={() => navigate('/login')}
     >
-      Fazer login
+      {texts.btnLogin[t]}
     </button>
   )
 
@@ -68,25 +90,25 @@ export function Home({theme, language} : TConfigs) {
       className='btnRegister btn'      
       onClick={()=> navigate('/register')}
     >
-      Me cadastrar
+      {texts.btnRegister[t]}
     </button>
   )
 
   const titleHomePage = (
     <h1 className='titleHomePage'>
-      Gerenciamento de tarefas
+      {texts.titleHomePage[t]}
     </h1>
   )
 
   const resumeHomePage = (
     <p className='resumeHomePage'>
-      Gerencie suas tarefas com uma ferramenta prática e online 
+      {texts.resumeHomePage[t]}
     </p>
   )
 
   const inviteHomePage = (
     <p className='inviteHomePage'>
-      Entre e organize suas tarefas da melhor maneira!
+      {texts.inviteHomePage[t]}
     </p>
   )
 
@@ -125,7 +147,12 @@ export function Home({theme, language} : TConfigs) {
   return (
     
 
-    <div className='home'>
+    <div className='home'
+      style={theme == 'light' ?
+        { backgroundColor: 'var(--background--ligth)' } :
+        { backgroundColor : 'var(--background--dark)' }
+      }
+    >
       <div className='headerHomePage'>
         <div className='titleAndResume'>
           {titleHomePage}
@@ -144,13 +171,13 @@ export function Home({theme, language} : TConfigs) {
         </section>
         <section className='rightSection'>        
           <div>
-            <p className='ps'>{svgCheck} Usabilidade intuitiva </p>
-            <p className='ps'>{svgCheck} Simples e eficiente </p>
-            <p className='ps'>{svgCheck} Navegação dinâmica </p>
-            <p className='ps'>{svgCheck} Ferramenta organizada </p>
-            <p className='ps'>{svgX} Flags personalizadas </p>
-            <p className='ps'>{svgX} Expiração por prazo </p>
-            <p className='ps'>{svgX} Mobile </p>
+            <p className='ps'>{svgCheck} { texts.svgCheck1[t] } </p>
+            <p className='ps'>{svgCheck} { texts.svgCheck2[t] }</p>
+            <p className='ps'>{svgCheck} { texts.svgCheck3[t] } </p>
+            <p className='ps'>{svgCheck} { texts.svgCheck4[t] } </p>
+            <p className='ps'>{svgX} { texts.svgX1[t] } </p>
+            <p className='ps'>{svgX} { texts.svgX2[t] } </p>
+            <p className='ps'>{svgX} { texts.svgX3[t] } </p>
           </div>
           <div className='btnsHomePage'>
             {inviteHomePage}

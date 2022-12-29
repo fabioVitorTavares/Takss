@@ -7,11 +7,22 @@ export function Register({theme, language} : TConfigs) {
   
   const navigate = useNavigate()
 
+
+  const t = language == 'pt' ? 0 : 1
+  const texts = {
+    inputUserName: ['Nome', 'Name'],
+    inputUser: ['Usuário', 'User'],
+    inputPassword: ['Senha', 'Password'],
+    inputConfirmPassword: ['Confirme a senha', 'Confirm the Password'],
+    btnCancel: ['Cancelar', 'Cancel'],
+    btnRegister: ['Cadastrar', 'Register']
+  }
+
   const inputCompleteName = (
     <input
       className='inputUserName inputRegister'
       type="text"
-      placeholder='Nome'
+      placeholder={texts.inputUserName[t]}
     />
   )
 
@@ -19,7 +30,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputUserEmail inputRegister'
       type="email"
-      placeholder='E-mail'
+      placeholder= 'Email'
     />
   )
 
@@ -27,7 +38,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputUser inputRegister'
       type="text"
-      placeholder='Usuário'
+      placeholder={texts.inputUser[t]}
     />
   )
 
@@ -35,7 +46,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputPassword inputRegister'
       type="password"
-      placeholder='Senha'
+      placeholder= {texts.inputPassword[t]}
     />
   )
 
@@ -43,7 +54,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputConfirmPassword inputRegister'
       type="password"
-      placeholder='Confirme a senha'
+      placeholder={texts.inputConfirmPassword[t]}
     />
   )
 
@@ -52,7 +63,7 @@ export function Register({theme, language} : TConfigs) {
       className='btnRegisterRegister'
       onClick={()=> navigate('/login')}
     >
-      Cancelar
+      {texts.btnCancel[t]}
     </button>
   )
 
@@ -61,13 +72,18 @@ export function Register({theme, language} : TConfigs) {
       className='btnRegisterRegister'      
       onClick={()=> navigate('/')}
       >
-      Cadastrar
+      {texts.btnRegister[t]}
     </button>
   )
 
-  return (
-
-    <div className='register'>
+  const register = (
+    <div
+      className='register'
+      style={theme == 'dark' ?
+        { backgroundColor: 'var(--background--ligth)' } :
+        { backgroundColor : 'var(--background--dark)' }
+      }
+      >
       {inputCompleteName}
       {inputEmail}
       {inputUserName}
@@ -77,6 +93,18 @@ export function Register({theme, language} : TConfigs) {
         {btnCancel}
         {btnRegister}
       </div>
+    </div>
+  )
+
+  return (
+    <div
+      className='home'
+      style={theme == 'light' ?
+        { backgroundColor: 'var(--background--ligth)' } :
+        { backgroundColor : 'var(--background--dark)' }
+      }
+    >
+    {register}
     </div>
   )
 }

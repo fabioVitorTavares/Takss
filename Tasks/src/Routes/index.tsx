@@ -10,8 +10,8 @@ import { useState } from 'react';
 
 export function Routers() {
   
-  const [theme, setTheme] = useState<String>('light') 
-  const [language, setLanguage] = useState<String>('pt') 
+  const [theme, setTheme] = useState<String>('dark') 
+  const [language, setLanguage] = useState<String>('eg') 
 
   console.log(theme, language);
   return (

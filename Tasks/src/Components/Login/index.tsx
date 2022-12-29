@@ -15,12 +15,8 @@ export function Login({theme, language} : TConfigs) {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const linkToApplication = (
-    <Link
-      to='/application'>
-      App
-    </Link>
-  )
+
+
   
   const userLogin = () => {
     if (user == 'fabio.furtado' && password == '321') {
@@ -35,19 +31,30 @@ export function Login({theme, language} : TConfigs) {
     e.keyCode == 13 && userLogin()
   }
 
-  
+  const t = language == 'pt' ? 0 : 1
+  const texts = {
+    inputUserPlaceholder: ['Usuário', 'User'],
+    inputPasswordPlaceholder: ['Senha', 'Password'],
+    btnEnterLogin: ['Entrar', 'Login'],
+    btnRegisterLogin: ['Cadastre-se', 'Register']
+  }
 
   const login = (
     <div
       onKeyDown={keyEnter}
-      className='login'>  
+      className='login'
+      style={theme == 'dark' ?
+        { backgroundColor: 'var(--background--ligth)' } :
+        { backgroundColor : 'var(--background--dark)' }
+      }
+    >  
       <div className='inputsLogin'>
         <div className='divInput'>
           <FaUser/>
           <input
             className='inputUser input'
             type="text"
-            placeholder='Usuário'
+            placeholder={texts.inputUserPlaceholder[t]}
             onChange={(e) => setUser(e.target.value)}
             />
         </div>
@@ -56,7 +63,7 @@ export function Login({theme, language} : TConfigs) {
           <input
             className='inputPassword input'
             type="password"
-            placeholder='Senha'
+            placeholder={texts.inputPasswordPlaceholder[t]}
             onChange={(e) => setPassword(e.target.value)}
             />
         </div>  
@@ -66,13 +73,13 @@ export function Login({theme, language} : TConfigs) {
           className='btnEnterLogin'
           onClick={userLogin}
         >
-          Entrar
+          {texts.btnEnterLogin[t]}
         </button>
         <button
           className='btnRegisterLogin'
           onClick={()=> navigate('/register')}
         >
-          Cadastre-se
+          {texts.btnRegisterLogin[t]}
         </button>
       </div>
     </div>
@@ -82,7 +89,13 @@ export function Login({theme, language} : TConfigs) {
 
 
   return (
-    <div className='home'>
+    <div
+      className='home'
+      style={theme == 'light' ?
+        { backgroundColor: 'var(--background--ligth)' } :
+        { backgroundColor : 'var(--background--dark)' }
+      }
+    >
       {login}
     </div>
   )

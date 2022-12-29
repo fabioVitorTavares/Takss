@@ -46,3 +46,8 @@ export type TConfigs = {
   theme: String,
   language: String  
 }
+
+export type ConfigurationProps = TConfigs & {
+  setTheme: Function,
+  setLanguage: Function
+}

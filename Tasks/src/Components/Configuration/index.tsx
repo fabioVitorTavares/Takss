@@ -1,16 +1,13 @@
-import { createContext, useContext, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { GrConfigure } from 'react-icons/gr'
 import { BsSun, BsMoon } from 'react-icons/bs'
 import iconBr from './img/icon-br.png'
 import iconEg from './img/icon-eg.png'
 import './style.css'
-import { TConfigs } from '../Types/types'
+import { ConfigurationProps } from '../Types/types'
 
 
-type ConfigurationProps = TConfigs & {
-  setTheme: Function,
-  setLanguage: Function
-}
+
 
 export function Configuration({theme, language, setTheme, setLanguage}: ConfigurationProps) {
     
@@ -22,8 +19,6 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
   
   const [open, setOpen] = useState<Boolean>(false)  
   
-  
-  
   const setThemeDark = () => {
     if (selectorTheme.current) {
       const selector: HTMLSpanElement = selectorTheme.current
@@ -31,7 +26,7 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
     }
     setTheme('dark')
   }
-
+  
   const setThemeLigth = () => {
     if (selectorTheme.current) {
       const selector: HTMLSpanElement = selectorTheme.current
@@ -39,7 +34,7 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
     }
     setTheme('light')
   }
-
+  
   const setLanguageBr = () => {
     if (selectorLanguage.current) {
       const selector: HTMLSpanElement = selectorLanguage.current
@@ -50,14 +45,14 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
       const selector: HTMLSpanElement = refIconEg.current
       selector.style.opacity = '0.7' 
     }
-
+    
     if (refIconBr.current) {
       const selector: HTMLSpanElement = refIconBr.current
       selector.style.opacity = '1' 
     }
-    setLanguage('br')
+    setLanguage('pt')
   }
-
+  
   const setLanguageEg = () => {
     if (selectorLanguage.current) {
       const selector: HTMLSpanElement = selectorLanguage.current
@@ -74,7 +69,7 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
       selector.style.opacity = '0.7' 
     }
     setLanguage('eg')
-  }    
+  }   
   
   const closePanel = () => {
     if(refPanel.current) {
@@ -108,7 +103,10 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
           />
         <span
           ref={selectorTheme}
-          className='selectorTheme'          
+          className='selectorTheme' 
+          style={
+            theme == 'light' ? { left: '0em' } : { left: '2.4em' }
+          }
           />
       </div>
       
@@ -129,8 +127,11 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
           />
         <span
           ref={selectorLanguage}
-          className='selectorLanguage'          
-          />
+          className='selectorLanguage' 
+          style={
+            language == 'pt' ? { left: '0em' } : { left: '2.4em' }
+          }
+        />
       </div>
     </div>
   )
@@ -149,13 +150,11 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
   
 
   return (    
-    //<ConfigContext.Provider value={{ theme, language }}>
-      <div className="configuration">
-        <GrConfigure
-          onClick={(e) => handleClickConfig(e) }
-          />
-        {open && panel}
-      </div>
-    //</ConfigContext.Provider>     
+    <div className="configuration">
+      <GrConfigure
+        onClick={(e) => handleClickConfig(e) }
+        />
+      {open && panel}
+    </div>
   )
 }
