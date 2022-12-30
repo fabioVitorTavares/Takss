@@ -128,7 +128,7 @@ export function Schedule() {
     <div className='selectorDeadline'>
       <MinCalendar
         date={deadlineNewTask}
-        setDate={setDeadlineNewTask}
+        setDate={setDeadlineNewTask}        
       />
     </div>
   );
@@ -147,7 +147,9 @@ export function Schedule() {
   );
 
   const addTask = (
-    <div className='addTask' >
+    <div className='addTask'
+      onClick={e => e.stopPropagation()}
+    >
       <div className='inputs'>
         <input
           autoFocus={true}
@@ -189,7 +191,11 @@ export function Schedule() {
       />
       <div className='titleCalendar'>
         <BiLeftArrow
-          onClick={dayPrevious}
+          onClick={(e) => {
+              e.stopPropagation() 
+              dayPrevious()
+            }
+          }
         />
         <div className='titleCalendarContent'>
           <h1>{daysOfWeek[date.getDay()][0]}</h1>
@@ -198,7 +204,11 @@ export function Schedule() {
           </span>
         </div>
         <BiRightArrow
-          onClick={nextDay}
+          onClick={(e) => {
+            e.stopPropagation()
+            nextDay()
+            }
+          }
         />
       </div>
       {

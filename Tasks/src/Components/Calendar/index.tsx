@@ -18,6 +18,7 @@ export function Calendar({ date, setDate }: TDate) {
   return (
     <div
       className='calendar'
+      onClick={e => e.stopPropagation()}
     >
       {minCalendar}      
       <div className='arrowCalendar'>
