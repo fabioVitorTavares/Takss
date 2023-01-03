@@ -4,11 +4,8 @@ import './style.css'
 import { TConfigs } from '../Types/types'
 import { useState } from 'react'
 
-
-
 export function Application({theme, language} : TConfigs) {  
   
-
   const t = language == 'pt' ? 0 : 1
   const texts = {
     tag: ['Tarefas', 'Tasks'],
