@@ -95,13 +95,25 @@ export function Home({theme, language} : TConfigs) {
   )
 
   const titleHomePage = (
-    <h1 className='titleHomePage'>
+    <h1
+      className='titleHomePage'
+      style={theme == 'light' ?
+        { color: '#000' }:
+        { color: '#fff' } 
+      }
+    >
       {texts.titleHomePage[t]}
     </h1>
   )
 
   const resumeHomePage = (
-    <p className='resumeHomePage'>
+    <p
+      className='resumeHomePage'
+      style={theme == 'light' ?
+      { color: '#000' }:
+      { color: '#fff' } 
+      }
+    >
       {texts.resumeHomePage[t]}
     </p>
   )
@@ -169,7 +181,13 @@ export function Home({theme, language} : TConfigs) {
             src={imgAvatar}
           />
         </section>
-        <section className='rightSection'>        
+        <section
+          className='rightSection'
+          style={theme == 'light' ?
+            { color: '#000' }:
+            { color: '#fff' } 
+          }
+        >        
           <div>
             <p className='ps'>{svgCheck} { texts.svgCheck1[t] } </p>
             <p className='ps'>{svgCheck} { texts.svgCheck2[t] }</p>

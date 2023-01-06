@@ -4,6 +4,7 @@
   justify-content: space-around;
   align-items: center;  
   transition: background-color  1s ease;
+
 }
 
 .headerHomePage {
@@ -17,6 +18,12 @@
 
 .titleAndResume h1 {
   font-size: 2.5em;
+}
+
+.titleAndResume h1, 
+.titleAndResume p, 
+.rightSection p {
+  transition: color  1s ease;
 }
 
 .btn {  
