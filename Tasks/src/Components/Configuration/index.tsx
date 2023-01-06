@@ -35,6 +35,7 @@ export function Configuration({theme, language, setTheme, setLanguage}: Configur
     setTheme('light')
   }
   
+  
   const setLanguageBr = () => {
     if (selectorLanguage.current) {
       const selector: HTMLSpanElement = selectorLanguage.current
