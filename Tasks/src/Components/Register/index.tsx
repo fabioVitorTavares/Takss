@@ -60,7 +60,7 @@ export function Register({theme, language} : TConfigs) {
 
   const btnCancel = (
     <button
-      className='btnRegisterRegister'
+      className='btnCancelRegister'
       onClick={()=> navigate('/login')}
     >
       {texts.btnCancel[t]}

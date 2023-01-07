@@ -25,15 +25,27 @@
 }
 
 
-.btnRegisterRegister {
+.btnRegisterRegister, .btnCancelRegister {
   width: 8em;
   height: 3em;
   border: none;
   outline: none;
   border-radius: 0.2em;
-  cursor: pointer;
+  cursor: pointer;  
+}
+
+.btnRegisterRegister {
+  color: #ffffff;
+  background-color: rgb(5, 95, 231);
+  border: none;
 }
 
 .btnRegisterRegister:hover {
+  background-color: #054099;
+  outline: 0.05em solid #054099;
+}
+
+
+.btnCancelRegister:hover {
   outline: 0.1em solid black;
 }
