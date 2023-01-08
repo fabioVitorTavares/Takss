@@ -4,8 +4,6 @@ import { MinCalendar } from '../MinCalendar'
 import { TDate } from '../Types/types'
 import './style.css'
 
-
-
 export function Calendar({ date, setDate }: TDate) {
   
   const minCalendar = (
