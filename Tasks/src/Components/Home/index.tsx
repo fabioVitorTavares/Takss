@@ -1,18 +1,18 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import imgAvatar from './avatar.svg'
-import { Configuration } from '../Configuration'
+import { Theme } from '../Theme'
 import { Context, ContextType, createContext, useContext, useEffect, useState } from 'react'
-import { TConfigs } from '../Types/types'
+import { TTheme } from '../Types/types'
 
 
 
 
-export function Home({theme, language} : TConfigs) {
-  
+export function Home({ dark }: TTheme) {
+
   const navigate = useNavigate()
 
-  
+
   const svgX = (
     <svg
       width="25px"
@@ -21,15 +21,15 @@ export function Home({theme, language} : TConfigs) {
       id="Flat"
       xmlns="http://www.w3.org/2000/svg"
       fill='#ff0000'
-      
+
     >
-      <path        
+      <path
         d="M208.48535,191.51465a12.0001,12.0001,0,0,1-16.9707,16.9707L128,144.9707,64.48535,208.48535a12.0001,12.0001,0,0,1-16.9707-16.9707L111.0293,128,47.51465,64.48535a12.0001,12.0001,0,0,1,16.9707-16.9707L128,111.0293l63.51465-63.51465a12.0001,12.0001,0,0,1,16.9707,16.9707L144.9707,128Z"
       />
     </svg>
   )
- 
-  const svgCheck = (    
+
+  const svgCheck = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="25px"
@@ -53,26 +53,16 @@ export function Home({theme, language} : TConfigs) {
     </svg>
   )
 
-  const t = language == 'pt' ? 0 : 1
   const texts = {
-    btnLogin: ['Fazer login', 'Sing in'],
-    btnRegister: ['Me cadastrar', 'Register'],
-    titleHomePage: ['Gerenciamento de tarefas', 'Tasks management'],
-    resumeHomePage: [
-      'Gerencie suas tarefas com uma ferramenta prática e online',
-      'Manage your tasks with a practical and online tool'
-    ],
-    inviteHomePage: [
-      'Entre e organize suas tarefas da melhor maneira!',
-      'Enter and organize your tasks in the best way!'
-    ],
-    svgCheck1: ['Usabilidade intuitiva', 'Intuitive usability'],
-    svgCheck2: ['Simples e eficiente', 'Simple and efficient'],
-    svgCheck3: ['Navegação dinâmica', 'Dynamic navigation'],
-    svgCheck4: ['Ferramenta organizada', 'Organized tool'],
-    svgX1: ['Flags personalizadas', 'Custom flags'],
-    svgX2: ['Expiração por prazo', 'Expiration by term'],
-    svgX3: ['Móvel', 'Mobile'],
+   
+  
+    svgCheck1: ['Usabilidade intuitiva', ''],
+    svgCheck2: ['Simples e eficiente', ''],
+    svgCheck3: ['Navegação dinâmica', ''],
+    svgCheck4: ['Ferramenta organizada', ''],
+    svgX1: ['Flags personalizadas', ''],
+    svgX2: ['Expiração por prazo', ''],
+    svgX3: ['Móvel', ''],
   }
 
   const btnLogin = (
@@ -80,89 +70,89 @@ export function Home({theme, language} : TConfigs) {
       className='btnLogin btn'
       onClick={() => navigate('/login')}
     >
-      {texts.btnLogin[t]}
+      Sing in
     </button>
   )
 
 
   const btnRegister = (
     <button
-      className='btnRegister btn'      
-      onClick={()=> navigate('/register')}
+      className='btnRegister btn'
+      onClick={() => navigate('/register')}
     >
-      {texts.btnRegister[t]}
+      Register
     </button>
   )
 
   const titleHomePage = (
     <h1
       className='titleHomePage'
-      style={theme == 'light' ?
-        { color: '#000' }:
-        { color: '#fff' } 
+      style={dark ?
+        { color: '#fff' } :
+        { color: '#000' } 
       }
     >
-      {texts.titleHomePage[t]}
+      Tasks management
     </h1>
   )
 
   const resumeHomePage = (
     <p
       className='resumeHomePage'
-      style={theme == 'light' ?
-      { color: '#000' }:
-      { color: '#fff' } 
+      style={dark ?
+        { color: '#fff' } :
+        { color: '#000' } 
       }
     >
-      {texts.resumeHomePage[t]}
+      Manage your tasks with a practical and online tool
     </p>
   )
 
   const inviteHomePage = (
     <p className='inviteHomePage'>
-      {texts.inviteHomePage[t]}
+      Enter and organize your tasks in the best way!
     </p>
   )
 
 
   const svgCheckAnimation = (
-    <svg   width="153" height="400" viewBox="0 0 153 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="153" height="400" viewBox="0 0 153 500" fill="none" xmlns="http://www.w3.org/2000/svg">
 
       <rect className='rect-tree' x="4.5" y="281.5" width="97" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9" />
-      <g className='paths'>      
-      <path className='path-x-one'  d="M23 305C36.973 315.152 49.9843 326.889 62.6512 338.393C69.9152 344.99 80.3726 351.595 85 360" stroke="#F00A0A" strokeWidth="12" strokeLinecap="round"/>
-      </g>
-      <g className='paths'>      
-      <path className='path-x-two' d="M9 361C14.4578 360.449 20.4378 352.628 23.7581 349.56C36.2741 337.995 49.3613 328.207 64.1613 319.2C73.2478 313.67 81.7578 307.328 90.7742 301.673C93.829 299.758 97.0244 297.695 99 295" stroke="#F00A0A" strokeWidth="12" strokeLinecap="round"/>
-      </g>
-      <rect className='rect-one' x="4.5" y="34.5" width="97" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9"/>
-      <g className='paths'>      
-      <path className='path-check-one' d="M22.3717 70.4708C27.2459 79.7566 35.72 87.547 42.465 95.5509C43.4695 96.7429 46.3277 101.287 48.1698 101.513C49.9017 101.725 53.778 92.6883 54.0755 92.1629C67.5555 68.357 86.4981 46.4896 109.214 31.038C120.361 23.4555 132.334 14.7314 146.16 14.1368" stroke="#019E23" strokeWidth="12" strokeLinecap="round"/>
-      </g>
-      <rect className='rect-four' x="4.5" y="403.5" width="96.8975" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9"/>
-      <g className='paths'>      
-      <path className='path-check-tree' d="M22.3561 439.471C27.2246 448.757 35.6889 456.547 42.426 464.551C43.4293 465.743 46.2842 470.287 48.1242 470.513C49.854 470.725 53.7258 461.688 54.023 461.163C67.4873 437.357 86.4078 415.49 109.097 400.038C120.231 392.456 132.19 383.731 146 383.137" stroke="#019E23" strokeWidth="12" strokeLinecap="round" />
-      </g>
-      
       <g className='paths'>
-      <path className='path-check-two' d="M22.3717 192.471C27.2459 201.757 35.72 209.547 42.465 217.551C43.4695 218.743 46.3277 223.287 48.1698 223.513C49.9017 223.725 53.778 214.688 54.0755 214.163C67.5555 190.357 86.4981 168.49 109.214 153.038C120.361 145.456 132.334 136.731 146.16 136.137" stroke="#019E23" strokeWidth="12" strokeLinecap="round" />
+        <path className='path-x-one' d="M23 305C36.973 315.152 49.9843 326.889 62.6512 338.393C69.9152 344.99 80.3726 351.595 85 360" stroke="#F00A0A" strokeWidth="12" strokeLinecap="round" />
       </g>
-        <rect className='rect-two' x="4.5" y="156.5" width="97" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9" />
       <g className='paths'>
-      <path className='path-check-two' d="M22.3717 192.471C27.2459 201.757 35.72 209.547 42.465 217.551C43.4695 218.743 46.3277 223.287 48.1698 223.513C49.9017 223.725 53.778 214.688 54.0755 214.163C67.5555 190.357 86.4981 168.49 109.214 153.038C120.361 145.456 132.334 136.731 146.16 136.137" stroke="#019E23" strokeWidth="12" strokeLinecap="round"/>
+        <path className='path-x-two' d="M9 361C14.4578 360.449 20.4378 352.628 23.7581 349.56C36.2741 337.995 49.3613 328.207 64.1613 319.2C73.2478 313.67 81.7578 307.328 90.7742 301.673C93.829 299.758 97.0244 297.695 99 295" stroke="#F00A0A" strokeWidth="12" strokeLinecap="round" />
+      </g>
+      <rect className='rect-one' x="4.5" y="34.5" width="97" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9" />
+      <g className='paths'>
+        <path className='path-check-one' d="M22.3717 70.4708C27.2459 79.7566 35.72 87.547 42.465 95.5509C43.4695 96.7429 46.3277 101.287 48.1698 101.513C49.9017 101.725 53.778 92.6883 54.0755 92.1629C67.5555 68.357 86.4981 46.4896 109.214 31.038C120.361 23.4555 132.334 14.7314 146.16 14.1368" stroke="#019E23" strokeWidth="12" strokeLinecap="round" />
+      </g>
+      <rect className='rect-four' x="4.5" y="403.5" width="96.8975" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9" />
+      <g className='paths'>
+        <path className='path-check-tree' d="M22.3561 439.471C27.2246 448.757 35.6889 456.547 42.426 464.551C43.4293 465.743 46.2842 470.287 48.1242 470.513C49.854 470.725 53.7258 461.688 54.023 461.163C67.4873 437.357 86.4078 415.49 109.097 400.038C120.231 392.456 132.19 383.731 146 383.137" stroke="#019E23" strokeWidth="12" strokeLinecap="round" />
+      </g>
+
+      <g className='paths'>
+        <path className='path-check-two' d="M22.3717 192.471C27.2459 201.757 35.72 209.547 42.465 217.551C43.4695 218.743 46.3277 223.287 48.1698 223.513C49.9017 223.725 53.778 214.688 54.0755 214.163C67.5555 190.357 86.4981 168.49 109.214 153.038C120.361 145.456 132.334 136.731 146.16 136.137" stroke="#019E23" strokeWidth="12" strokeLinecap="round" />
+      </g>
+      <rect className='rect-two' x="4.5" y="156.5" width="97" height="92" rx="9.5" fill="#FAFAFA" stroke="black" strokeWidth="9" />
+      <g className='paths'>
+        <path className='path-check-two' d="M22.3717 192.471C27.2459 201.757 35.72 209.547 42.465 217.551C43.4695 218.743 46.3277 223.287 48.1698 223.513C49.9017 223.725 53.778 214.688 54.0755 214.163C67.5555 190.357 86.4981 168.49 109.214 153.038C120.361 145.456 132.334 136.731 146.16 136.137" stroke="#019E23" strokeWidth="12" strokeLinecap="round" />
       </g>
     </svg>
   )
 
-  
+
 
   return (
-    
+
 
     <div className='home'
-      style={theme == 'light' ?
-        { backgroundColor: 'var(--background--ligth)' } :
-        { backgroundColor : 'var(--background--dark)' }
+      style={dark ?
+        { backgroundColor: 'var(--background--dark)' } :
+        { backgroundColor: 'var(--background--ligth)' } 
       }
     >
       <div className='headerHomePage'>
@@ -174,7 +164,7 @@ export function Home({theme, language} : TConfigs) {
       <div className='bodyHomePage'>
         <section className='leftSection'>
           <div>
-            {svgCheckAnimation}            
+            {svgCheckAnimation}
           </div>
           <img
             className='imgAvatar'
@@ -183,29 +173,29 @@ export function Home({theme, language} : TConfigs) {
         </section>
         <section
           className='rightSection'
-          style={theme == 'light' ?
-            { color: '#000' }:
-            { color: '#fff' } 
+          style={dark ?
+            { color: '#fff' } :
+            { color: '#000' } 
           }
-        >        
+        >
           <div>
-            <p className='ps'>{svgCheck} { texts.svgCheck1[t] } </p>
-            <p className='ps'>{svgCheck} { texts.svgCheck2[t] }</p>
-            <p className='ps'>{svgCheck} { texts.svgCheck3[t] } </p>
-            <p className='ps'>{svgCheck} { texts.svgCheck4[t] } </p>
-            <p className='ps'>{svgX} { texts.svgX1[t] } </p>
-            <p className='ps'>{svgX} { texts.svgX2[t] } </p>
-            <p className='ps'>{svgX} { texts.svgX3[t] } </p>
+            <p className='ps'>{svgCheck} Intuitive usability </p>
+            <p className='ps'>{svgCheck} Simple and efficient </p>
+            <p className='ps'>{svgCheck} Dynamic navigation </p>
+            <p className='ps'>{svgCheck} Organized tool </p>
+            <p className='ps'>{svgX} Custom flags </p>
+            <p className='ps'>{svgX} Expiration by term </p>
+            <p className='ps'>{svgX} Mobile </p>
           </div>
           <div className='btnsHomePage'>
             {inviteHomePage}
             <div>
-              {btnRegister}  
+              {btnRegister}
               {btnLogin}
             </div>
           </div>
         </section>'
-      </div> 
+      </div>
     </div>
   )
 }

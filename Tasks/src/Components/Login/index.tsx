@@ -2,14 +2,14 @@ import { FaUser, FaLock } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { KeyboardEvent, useState } from 'react'
 import './style.css'
-import { TConfigs } from '../Types/types'
+import { TTheme } from '../Types/types'
 
 
 
 
 
 
-export function Login({theme, language} : TConfigs) {
+export function Login({dark} : TTheme) {
   
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
@@ -31,21 +31,15 @@ export function Login({theme, language} : TConfigs) {
     e.keyCode == 13 && userLogin()
   }
 
-  const t = language == 'pt' ? 0 : 1
-  const texts = {
-    inputUserPlaceholder: ['Usuário', 'User'],
-    inputPasswordPlaceholder: ['Senha', 'Password'],
-    btnEnterLogin: ['Entrar', 'Login'],
-    btnRegisterLogin: ['Cadastre-se', 'Register']
-  }
+  
 
   const login = (
     <div
       onKeyDown={keyEnter}
       className='login'
-      style={theme == 'dark' ?
-        { backgroundColor: 'var(--background--ligth)' } :
-        { backgroundColor : 'var(--background--dark)' }
+      style={dark ?
+        { backgroundColor : 'var(--background--dark)' } :
+        { backgroundColor: 'var(--background--ligth)' } 
       }
     >  
       <div className='inputsLogin'>
@@ -53,8 +47,8 @@ export function Login({theme, language} : TConfigs) {
           <FaUser/>
           <input
             className='inputUser input'
-            type="text"
-            placeholder={texts.inputUserPlaceholder[t]}
+            type='text'
+            placeholder='User'
             onChange={(e) => setUser(e.target.value)}
             />
         </div>
@@ -62,8 +56,8 @@ export function Login({theme, language} : TConfigs) {
           <FaLock/>
           <input
             className='inputPassword input'
-            type="password"
-            placeholder={texts.inputPasswordPlaceholder[t]}
+            type='password'
+            placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
             />
         </div>  
@@ -73,13 +67,13 @@ export function Login({theme, language} : TConfigs) {
           className='btnEnterLogin'
           onClick={userLogin}
         >
-          {texts.btnEnterLogin[t]}
+          Enter
         </button>
         <button
           className='btnRegisterLogin'
           onClick={()=> navigate('/register')}
         >
-          {texts.btnRegisterLogin[t]}
+          Register
         </button>
       </div>
     </div>
@@ -91,9 +85,9 @@ export function Login({theme, language} : TConfigs) {
   return (
     <div
       className='home'
-      style={theme == 'light' ?
-        { backgroundColor: 'var(--background--ligth)' } :
-        { backgroundColor : 'var(--background--dark)' }
+      style={dark ?
+        { backgroundColor : 'var(--background--dark)' } :
+        { backgroundColor: 'var(--background--ligth)' } 
       }
     >
       {login}

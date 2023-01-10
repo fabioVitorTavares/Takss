@@ -42,12 +42,10 @@ export type TTask = {
   description: string
 }
 
-export type TConfigs = {
-  theme: String,
-  language: String  
+export type TTheme = {
+  dark: Boolean
 }
 
-export type ConfigurationProps = TConfigs & {
-  setTheme: Function,
-  setLanguage: Function
+export type TThemeProps = TTheme & {
+  setDark: Function  
 }

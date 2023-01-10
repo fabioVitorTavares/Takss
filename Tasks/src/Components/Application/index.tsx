@@ -1,16 +1,12 @@
 import { Schedule } from '../Schedule'
 import { Link } from 'react-router-dom'
 import './style.css'
-import { TConfigs } from '../Types/types'
+import { TTheme } from '../Types/types'
 import { useState } from 'react'
 
-export function Application({theme, language} : TConfigs) {  
+export function Application({dark} : TTheme) {  
   
-  const t = language == 'pt' ? 0 : 1
-  const texts = {
-    tag: ['Tarefas', 'Tasks'],
-    logout: ['Sair', 'Logout']
-  }
+
 
 
   const [openDropdown, setOpenDropdown] = useState<Boolean>(false)
@@ -30,7 +26,7 @@ export function Application({theme, language} : TConfigs) {
     <header className='header'>
       <div>
         <span>
-          {texts.tag[t]}
+          Tasks
         </span>
       </div>
       <div
@@ -81,7 +77,7 @@ export function Application({theme, language} : TConfigs) {
                   openDropdown  ? {animation: 'openDropDowAnimationBtn4 1s ease forwards' } : {}
                 }
               >
-                {texts.logout[t]}
+                Logout
               </button>
             </Link>
           </div>
@@ -92,9 +88,9 @@ export function Application({theme, language} : TConfigs) {
   return (
     <div
       className='application'
-      style={theme == 'light' ?
-      { backgroundColor: 'var(--background--ligth)' } :
-      { backgroundColor : 'var(--background--dark)' }
+      style={dark ?
+        { backgroundColor : 'var(--background--dark)' } :
+        { backgroundColor: 'var(--background--ligth)' } 
     }
     >
       {reader}
