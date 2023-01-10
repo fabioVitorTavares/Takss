@@ -96,8 +96,6 @@
   outline: 0.05em solid #2a2c2b;
 }
 
-
-
 .path-check-one {
   stroke-dasharray: 180;
   animation: svg-animate-one 10s ease backwards infinite;  
