@@ -112,8 +112,6 @@ export function Schedule() {
     setDescriptionNewTask('')
     setDeadlineNewTask(date)
     setStateSchedule(!stateSchedule) 
-    
-    console.log('add');
   }
   
   const btNewTask = (

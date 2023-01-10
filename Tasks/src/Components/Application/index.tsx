@@ -90,7 +90,13 @@ export function Application({theme, language} : TConfigs) {
     </header>
   )
   return (
-    <div className='application'>
+    <div
+      className='application'
+      style={theme == 'light' ?
+      { backgroundColor: 'var(--background--ligth)' } :
+      { backgroundColor : 'var(--background--dark)' }
+    }
+    >
       {reader}
       <Schedule/>
     </div>    
