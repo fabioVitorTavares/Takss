@@ -4,7 +4,7 @@ import './style.css'
 import { TTheme } from '../Types/types'
 import { useState } from 'react'
 
-export function Application({dark} : TTheme) {  
+export function Application() {  
   
 
 

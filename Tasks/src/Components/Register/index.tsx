@@ -1,14 +1,13 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
-import { TConfigs } from '../Types/types'
 
 
-export function Register({theme, language} : TConfigs) {
+export function Register() {
   
   const navigate = useNavigate()
 
 
-  const t = language == 'pt' ? 0 : 1
+  
   const texts = {
     inputUserName: ['Nome', 'Name'],
     inputUser: ['Usuário', 'User'],
@@ -22,7 +21,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputUserName inputRegister'
       type="text"
-      placeholder={texts.inputUserName[t]}
+      placeholder={texts.inputUserName[0]}
     />
   )
 
@@ -38,7 +37,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputUser inputRegister'
       type="text"
-      placeholder={texts.inputUser[t]}
+      placeholder={texts.inputUser[0]}
     />
   )
 
@@ -46,7 +45,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputPassword inputRegister'
       type="password"
-      placeholder= {texts.inputPassword[t]}
+      placeholder= {texts.inputPassword[0]}
     />
   )
 
@@ -54,7 +53,7 @@ export function Register({theme, language} : TConfigs) {
     <input
       className='inputConfirmPassword inputRegister'
       type="password"
-      placeholder={texts.inputConfirmPassword[t]}
+      placeholder={texts.inputConfirmPassword[0]}
     />
   )
 
@@ -63,7 +62,7 @@ export function Register({theme, language} : TConfigs) {
       className='btnCancelRegister'
       onClick={()=> navigate('/login')}
     >
-      {texts.btnCancel[t]}
+      {texts.btnCancel[0]}
     </button>
   )
 
@@ -72,17 +71,14 @@ export function Register({theme, language} : TConfigs) {
       className='btnRegisterRegister'      
       onClick={()=> navigate('/')}
       >
-      {texts.btnRegister[t]}
+      {texts.btnRegister[0]}
     </button>
   )
 
   const register = (
     <div
       className='register'
-      style={theme == 'dark' ?
-        { backgroundColor: 'var(--background--ligth)' } :
-        { backgroundColor : 'var(--background--dark)' }
-      }
+      
       >
       {inputCompleteName}
       {inputEmail}
@@ -99,10 +95,7 @@ export function Register({theme, language} : TConfigs) {
   return (
     <div
       className='home'
-      style={theme == 'light' ?
-        { backgroundColor: 'var(--background--ligth)' } :
-        { backgroundColor : 'var(--background--dark)' }
-      }
+      
     >
     {register}
     </div>

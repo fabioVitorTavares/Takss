@@ -1,16 +1,22 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import imgAvatar from './avatar.svg'
+import { useContext } from 'react'
+import { TTheme, TypeTheme } from '../Types/types'
 import { Theme } from '../Theme'
-import { Context, ContextType, createContext, useContext, useEffect, useState } from 'react'
-import { TTheme } from '../Types/types'
+import { ThemeContext } from "../../Routes"
 
 
-
-
-export function Home({ dark }: TTheme) {
+export function Home() {
 
   const navigate = useNavigate()
+
+  const theme = useContext(ThemeContext)
+
+
+  
+
+
 
 
   const svgX = (
@@ -76,21 +82,19 @@ export function Home({ dark }: TTheme) {
 
 
   const btnRegister = (
-    <button
-      className='btnRegister btn'
-      onClick={() => navigate('/register')}
-    >
-      Register
-    </button>
+      
+      <button
+        className='btnRegister btn'
+        onClick={/* () => navigate('/register') */ () => console.log(`${theme?.dark}`)}
+        >
+        Register
+      </button>
   )
 
   const titleHomePage = (
     <h1
       className='titleHomePage'
-      style={dark ?
-        { color: '#fff' } :
-        { color: '#000' } 
-      }
+      
     >
       Tasks management
     </h1>
@@ -99,17 +103,17 @@ export function Home({ dark }: TTheme) {
   const resumeHomePage = (
     <p
       className='resumeHomePage'
-      style={dark ?
-        { color: '#fff' } :
-        { color: '#000' } 
-      }
+      
     >
       Manage your tasks with a practical and online tool
     </p>
   )
 
   const inviteHomePage = (
-    <p className='inviteHomePage'>
+    <p
+      className='inviteHomePage'
+      
+    >
       Enter and organize your tasks in the best way!
     </p>
   )
@@ -147,10 +151,10 @@ export function Home({ dark }: TTheme) {
 
 
   return (
-
+    
 
     <div className='home'
-      style={dark ?
+      style={theme?.dark ?
         { backgroundColor: 'var(--background--dark)' } :
         { backgroundColor: 'var(--background--ligth)' } 
       }
@@ -173,7 +177,7 @@ export function Home({ dark }: TTheme) {
         </section>
         <section
           className='rightSection'
-          style={dark ?
+          style={theme?.dark ?
             { color: '#fff' } :
             { color: '#000' } 
           }

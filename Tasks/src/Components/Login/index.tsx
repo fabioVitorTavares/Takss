@@ -1,15 +1,15 @@
 import { FaUser, FaLock } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { KeyboardEvent, useState } from 'react'
-import './style.css'
 import { TTheme } from '../Types/types'
+import './style.css'
 
 
 
 
 
 
-export function Login({dark} : TTheme) {
+export function Login() {
   
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
@@ -37,10 +37,7 @@ export function Login({dark} : TTheme) {
     <div
       onKeyDown={keyEnter}
       className='login'
-      style={dark ?
-        { backgroundColor : 'var(--background--dark)' } :
-        { backgroundColor: 'var(--background--ligth)' } 
-      }
+      
     >  
       <div className='inputsLogin'>
         <div className='divInput'>
@@ -85,10 +82,7 @@ export function Login({dark} : TTheme) {
   return (
     <div
       className='home'
-      style={dark ?
-        { backgroundColor : 'var(--background--dark)' } :
-        { backgroundColor: 'var(--background--ligth)' } 
-      }
+      
     >
       {login}
     </div>

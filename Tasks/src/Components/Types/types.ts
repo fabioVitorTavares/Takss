@@ -49,3 +49,9 @@ export type TTheme = {
 export type TThemeProps = TTheme & {
   setDark: Function  
 }
+
+export type TypeTheme = {
+  dark: Boolean
+  color: String,
+  backgroundColor: String,
+}
