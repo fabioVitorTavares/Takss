@@ -59,17 +59,6 @@ export function Home() {
     </svg>
   )
 
-  const texts = {
-   
-  
-    svgCheck1: ['Usabilidade intuitiva', ''],
-    svgCheck2: ['Simples e eficiente', ''],
-    svgCheck3: ['Navegação dinâmica', ''],
-    svgCheck4: ['Ferramenta organizada', ''],
-    svgX1: ['Flags personalizadas', ''],
-    svgX2: ['Expiração por prazo', ''],
-    svgX3: ['Móvel', ''],
-  }
 
   const btnLogin = (
     <button
@@ -80,12 +69,11 @@ export function Home() {
     </button>
   )
 
-
   const btnRegister = (
       
       <button
         className='btnRegister btn'
-        onClick={/* () => navigate('/register') */ () => console.log(`${theme?.dark}`)}
+        onClick={() => navigate('/register')}
         >
         Register
       </button>
@@ -94,7 +82,7 @@ export function Home() {
   const titleHomePage = (
     <h1
       className='titleHomePage'
-      
+      style={{color: `var(${theme?.color})`}}
     >
       Tasks management
     </h1>
@@ -103,7 +91,7 @@ export function Home() {
   const resumeHomePage = (
     <p
       className='resumeHomePage'
-      
+      style={{color: `var(${theme?.color})`}}      
     >
       Manage your tasks with a practical and online tool
     </p>
@@ -112,7 +100,7 @@ export function Home() {
   const inviteHomePage = (
     <p
       className='inviteHomePage'
-      
+      style={{color: `var(${theme?.color})`}}
     >
       Enter and organize your tasks in the best way!
     </p>
@@ -154,10 +142,7 @@ export function Home() {
     
 
     <div className='home'
-      style={theme?.dark ?
-        { backgroundColor: 'var(--background--dark)' } :
-        { backgroundColor: 'var(--background--ligth)' } 
-      }
+      style={{ backgroundColor: `var(${theme?.backgroundColor})`}}
     >
       <div className='headerHomePage'>
         <div className='titleAndResume'>

@@ -1,18 +1,18 @@
 import { Schedule } from '../Schedule'
 import { Link } from 'react-router-dom'
 import './style.css'
-import { TTheme } from '../Types/types'
-import { useState } from 'react'
+import { TypeTheme } from '../Types/types'
+import { useContext, useState } from 'react'
+import { ThemeContext } from '../../Routes'
 
 export function Application() {  
   
 
-
+  const theme = useContext<TypeTheme>(ThemeContext)
 
   const [openDropdown, setOpenDropdown] = useState<Boolean>(false)
   const [animationClose, setAnimationClose] = useState<Boolean>(false)
   
-  console.log(openDropdown, animationClose);
   const closeDropdown = () => {
     openDropdown && setAnimationClose(true)
     setTimeout(() => {
@@ -37,7 +37,7 @@ export function Application() {
           }
         }
       >
-        {openDropdown &&
+        {/* {openDropdown &&
           <div className='contentProfileDropDow'>
             <button
               onClick={e => e.stopPropagation()}
@@ -81,17 +81,14 @@ export function Application() {
               </button>
             </Link>
           </div>
-        }
+        } */}
       </div>
     </header>
   )
   return (
     <div
       className='application'
-      style={dark ?
-        { backgroundColor : 'var(--background--dark)' } :
-        { backgroundColor: 'var(--background--ligth)' } 
-    }
+      style={{ backgroundColor: `var(${theme.backgroundColor})`}}
     >
       {reader}
       <Schedule/>

@@ -14,23 +14,20 @@ export function Theme({changeTheme} : Props) {
   
   const theme = useContext(ThemeContext)
 
-  const change = () => {
-    console.log('cha')
-    changeTheme()
-  }
+  
 
   return (  
     
-      <div
-        className="theme"
-        onClick={change}
+    <div
+      className="theme"
+      onClick={() => changeTheme()}
     >
-      <BsSun style={{ fill: '#e7e40c' }}/>
-        {/* {theme?.dark ?        
-          <BsSun style={{ fill: '#e7e40c' }}/> :
-          <BsMoon style={{ fill: '#10028f' }}/>} */}
-      <Teste/>
-      </div>
+      
+      {theme?.dark ?        
+        <BsSun style={{ fill: '#e7e40c' }}/> :
+        <BsMoon style={{ fill: '#10028f' }}/>}
+    
+    </div>
   )
 }
 

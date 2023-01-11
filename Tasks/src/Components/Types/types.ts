@@ -42,14 +42,6 @@ export type TTask = {
   description: string
 }
 
-export type TTheme = {
-  dark: Boolean
-}
-
-export type TThemeProps = TTheme & {
-  setDark: Function  
-}
-
 export type TypeTheme = {
   dark: Boolean
   color: String,

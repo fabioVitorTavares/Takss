@@ -7,7 +7,11 @@ import { Theme } from '../Components/Theme';
 import { createContext, useState } from 'react';
 import { TypeTheme } from '../Components/Types/types';
 
-export const ThemeContext = createContext<TypeTheme | null>(null)
+export const ThemeContext = createContext<TypeTheme>({
+  dark: true,
+  color: '--black',
+  backgroundColor: '--background--ligth'
+})
 
 
 export function Routers() {
@@ -19,9 +23,18 @@ export function Routers() {
   })
 
    
-  function changeTheme(){
-    console.log('alter');
-    setTheme({...theme, dark: !theme.dark})
+  function changeTheme() {
+    const updateTheme = theme.dark ? {
+      dark:  false,
+      color: '--black',
+      backgroundColor: '--background--ligth'
+    } : {
+      dark: true,
+      color: '--white',
+      backgroundColor: '--background--dark'
+    }
+    
+    setTheme(updateTheme)
   }
 
 
