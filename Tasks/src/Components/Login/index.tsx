@@ -1,23 +1,18 @@
-import { FaUser, FaLock } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
 import { KeyboardEvent, useState } from 'react'
-import { TTheme } from '../Types/types'
+import { FaUser, FaLock } from 'react-icons/fa'
+import { ThemeContext } from '../../Routes'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { TypeTheme } from '../Types/types'
 import './style.css'
-
-
-
-
-
 
 export function Login() {
   
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const theme = useContext<TypeTheme>(ThemeContext)
 
-
-
-  
   const userLogin = () => {
     if (user == 'fabio.furtado' && password == '321') {
       navigate('/application')      
@@ -30,8 +25,6 @@ export function Login() {
   const keyEnter = (e: KeyboardEvent) => {
     e.keyCode == 13 && userLogin()
   }
-
-  
 
   const login = (
     <div
@@ -76,13 +69,10 @@ export function Login() {
     </div>
   )
 
-  
-
-
   return (
     <div
       className='home'
-      
+      style={{backgroundColor: `var(${theme.backgroundColor})`}}
     >
       {login}
     </div>

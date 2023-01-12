@@ -1,27 +1,20 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { TypeTheme } from '../Types/types'
+import { ThemeContext } from '../../Routes'
 
 
 export function Register() {
   
   const navigate = useNavigate()
-
-
-  
-  const texts = {
-    inputUserName: ['Nome', 'Name'],
-    inputUser: ['Usuário', 'User'],
-    inputPassword: ['Senha', 'Password'],
-    inputConfirmPassword: ['Confirme a senha', 'Confirm the Password'],
-    btnCancel: ['Cancelar', 'Cancel'],
-    btnRegister: ['Cadastrar', 'Register']
-  }
+  const theme = useContext<TypeTheme>(ThemeContext)
 
   const inputCompleteName = (
     <input
       className='inputUserName inputRegister'
       type="text"
-      placeholder={texts.inputUserName[0]}
+      placeholder='Name'
     />
   )
 
@@ -36,16 +29,16 @@ export function Register() {
   const inputUserName = (
     <input
       className='inputUser inputRegister'
-      type="text"
-      placeholder={texts.inputUser[0]}
+      type='text'
+      placeholder='User'
     />
   )
 
   const inputPassword = (
     <input
       className='inputPassword inputRegister'
-      type="password"
-      placeholder= {texts.inputPassword[0]}
+      type='password'
+      placeholder = 'Password'
     />
   )
 
@@ -53,7 +46,7 @@ export function Register() {
     <input
       className='inputConfirmPassword inputRegister'
       type="password"
-      placeholder={texts.inputConfirmPassword[0]}
+      placeholder = 'Confirm the Password'
     />
   )
 
@@ -62,7 +55,7 @@ export function Register() {
       className='btnCancelRegister'
       onClick={()=> navigate('/login')}
     >
-      {texts.btnCancel[0]}
+      Cancel
     </button>
   )
 
@@ -71,7 +64,7 @@ export function Register() {
       className='btnRegisterRegister'      
       onClick={()=> navigate('/')}
       >
-      {texts.btnRegister[0]}
+      Register
     </button>
   )
 
@@ -95,7 +88,7 @@ export function Register() {
   return (
     <div
       className='home'
-      
+      style={{backgroundColor: `var(${theme.backgroundColor})`}}      
     >
     {register}
     </div>

@@ -8,7 +8,7 @@ import { createContext, useState } from 'react';
 import { TypeTheme } from '../Components/Types/types';
 
 export const ThemeContext = createContext<TypeTheme>({
-  dark: true,
+  dark: false,
   color: '--black',
   backgroundColor: '--background--ligth'
 })
@@ -17,13 +17,12 @@ export const ThemeContext = createContext<TypeTheme>({
 export function Routers() {
   
   const [theme, setTheme] = useState<TypeTheme>({
-    dark: true,
+    dark: false,
     color: '--black',
     backgroundColor: '--background--ligth'
   })
-
    
-  function changeTheme() {
+  const changeTheme = () => {
     const updateTheme = theme.dark ? {
       dark:  false,
       color: '--black',
@@ -32,8 +31,7 @@ export function Routers() {
       dark: true,
       color: '--white',
       backgroundColor: '--background--dark'
-    }
-    
+    }    
     setTheme(updateTheme)
   }
 
@@ -41,43 +39,43 @@ export function Routers() {
   return (
     
     <BrowserRouter>
-    <ThemeContext.Provider value={theme}>
-        <Routes>
-          <Route
-            element={
-              <>
-                <Home/>
-                <Theme changeTheme={changeTheme}/>
-              </>
-            }
-            path='/' />
-          <Route
-            element={
-              <>
-                <Login/>
-                <Theme changeTheme={changeTheme}/>
-              </>
-            }
-            path='/login' />
-          <Route
-            element={
-              <>
-                <Theme changeTheme={changeTheme}/>
-                <Register/>
-              </>
-            }
-            path='/register' />
-          <Route
-            element={
-              <>
-                <Theme changeTheme={changeTheme}/>
-                <Application/>
-              </>
-            }
-            path='/application' />
-        </Routes>
-    </ThemeContext.Provider>
-      </BrowserRouter>
+      <ThemeContext.Provider value={theme}>
+          <Routes>
+            <Route
+              element={
+                <>
+                  <Home/>
+                  <Theme changeTheme={changeTheme}/>
+                </>
+              }
+              path='/' />
+            <Route
+              element={
+                <>
+                  <Login/>
+                  <Theme changeTheme={changeTheme}/>
+                </>
+              }
+              path='/login' />
+            <Route
+              element={
+                <>
+                  <Theme changeTheme={changeTheme}/>
+                  <Register/>
+                </>
+              }
+              path='/register' />
+            <Route
+              element={
+                <>
+                  <Theme changeTheme={changeTheme}/>
+                  <Application/>
+                </>
+              }
+              path='/application' />
+          </Routes>
+      </ThemeContext.Provider>
+    </BrowserRouter>
   )
 }
 

@@ -7,7 +7,7 @@
   justify-content: space-around;
   background-color: var(--c2);
   border-radius: 0.5em;
-  transition: background-color 2s ease;
+  transition: background-color 1s ease;
 }
 
 .inputRegister {

@@ -2,8 +2,7 @@ import './style.css'
 import { useNavigate } from 'react-router-dom'
 import imgAvatar from './avatar.svg'
 import { useContext } from 'react'
-import { TTheme, TypeTheme } from '../Types/types'
-import { Theme } from '../Theme'
+import { TypeTheme } from '../Types/types'
 import { ThemeContext } from "../../Routes"
 
 
@@ -11,13 +10,7 @@ export function Home() {
 
   const navigate = useNavigate()
 
-  const theme = useContext(ThemeContext)
-
-
-  
-
-
-
+  const theme = useContext<TypeTheme>(ThemeContext)
 
   const svgX = (
     <svg

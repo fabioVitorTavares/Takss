@@ -1,13 +1,11 @@
 import { Schedule } from '../Schedule'
-import { Link } from 'react-router-dom'
-import './style.css'
 import { TypeTheme } from '../Types/types'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../../Routes'
+import './style.css'
 
 export function Application() {  
   
-
   const theme = useContext<TypeTheme>(ThemeContext)
 
   const [openDropdown, setOpenDropdown] = useState<Boolean>(false)

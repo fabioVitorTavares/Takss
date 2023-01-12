@@ -1,32 +1,33 @@
 import { BsSun, BsMoon } from 'react-icons/bs'
-import { TThemeProps, TypeTheme } from '../Types/types'
+import { TypeTheme } from '../Types/types'
 import { useContext, useEffect, useState } from 'react'
-import './style.css'
-import { createContext } from 'react'
-import { Teste } from '../Home/teste'
 import { ThemeContext } from '../../Routes'
+import './style.css'
 
-type Props = {
-  changeTheme: Function
-}
 
-export function Theme({changeTheme} : Props) {
+
+export function Theme({changeTheme} : { changeTheme: Function }) {
   
-  const theme = useContext(ThemeContext)
+  const theme = useContext<TypeTheme>(ThemeContext)
 
-  
+  const btnSun = (
+    <BsSun
+      style={{ fill: '#e7e40c' }}
+    />
+  )
 
-  return (  
-    
+  const btnMoon = (
+    <BsMoon
+      style={{ fill: '#10028f' }}
+    />
+  )
+
+  return (      
     <div
       className="theme"
       onClick={() => changeTheme()}
     >
-      
-      {theme?.dark ?        
-        <BsSun style={{ fill: '#e7e40c' }}/> :
-        <BsMoon style={{ fill: '#10028f' }}/>}
-    
+      {theme?.dark ? btnSun : btnMoon }    
     </div>
   )
 }
