@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
-import { TDate } from '../Types/types';
+import { TDateSetings } from '../Types/types';
 import './style.css'
 
 const numeros = new Array<string>(42).fill('1')
@@ -29,7 +29,7 @@ const days = [
   ['S', 'S']    
 ]
 
-export function MinCalendar({ date, setDate }: TDate) {
+export function MinCalendar({ date, setDate }: TDateSetings) {
 
   const [numbersOfDays, setNumberOfDays] = useState<string[]>(numeros)
 

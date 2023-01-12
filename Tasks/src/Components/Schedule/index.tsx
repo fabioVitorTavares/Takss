@@ -1,31 +1,23 @@
-import { useEffect, useState, useRef } from 'react'
-import { Calendar } from '../Calendar'
+import { useEffect, useState, useRef, useContext } from 'react'
 import { Task } from '../Task'
-import { TTask } from '../Types/types'
+import { TDateSetings, TTask, TypeTheme } from '../Types/types'
 import { VscCalendar } from 'react-icons/vsc'
 import { MinCalendar } from '../MinCalendar'
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi'
 import './style.css'
+import { ThemeContext } from '../../Routes'
 
 
-const daysOfWeek = [
-  ['Domingo','Sunday'],
-  ['Segunda','Monday'],
-  ['Terça','Tuesday'],
-  ['Quarta','Wednesday'],
-  ['Quinta','Thursday'],
-  ['Sexta','Friday'],
-  ['Sábado','Sarturday'],
-]
+const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sarturday']
 
-export function Schedule() {
+export function Schedule({date, setDate}: TDateSetings){
   
+  const theme = useContext<TypeTheme>(ThemeContext)
 
   const [addTaskOpen, setAddTaskOpen] = useState<boolean>(false)
   const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
   const [descriptionNewTask, setDescriptionNewTask] = useState<string>('')
-  const [date, setDate] = useState<Date>(new Date())
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [stateSchedule, setStateSchedule] = useState<Boolean>(false)
   const inputDescriptionNewTask = useRef<HTMLInputElement>(null)
@@ -182,11 +174,11 @@ export function Schedule() {
 
 
   return (
-    <div className='schedule'>
-      <Calendar
-        date={date}
-        setDate={setDate}
-      />
+    <div
+      className='schedule'
+      style={{borderLeft: `0.1em solid var(${theme.color})`}}
+    >
+      
       <div className='titleCalendar'>
         <BiLeftArrow
           onClick={(e) => {
@@ -196,7 +188,7 @@ export function Schedule() {
           }
         />
         <div className='titleCalendarContent'>
-          <h1>{daysOfWeek[date.getDay()][0]}</h1>
+          <h1>{daysOfWeek[date.getDay()]}</h1>
           <span className='currentDate'>
             {date.toLocaleDateString()}
           </span>
@@ -209,23 +201,26 @@ export function Schedule() {
           }
         />
       </div>
-      {
-        tasks?.map(
-          task =>
-            <Task
-              key={task.id}
-              task={task}
-              changeStatus={
-                (newStatus: string, dateCompleted: string) => {
-                  changeStatus(task.id, newStatus, dateCompleted)
+      <div className='tasks'>
+
+        {
+          tasks?.map(
+            task =>
+              <Task
+                key={task.id}
+                task={task}
+                changeStatus={
+                  (newStatus: string, dateCompleted: string) => {
+                    changeStatus(task.id, newStatus, dateCompleted)
+                  }
                 }
-              }
-              removeTask={
-                () => removeTask(task.id)
-              }
-            />
-        )
-      }
+                removeTask={
+                  () => removeTask(task.id)
+                }
+              />
+          )
+        }
+      </div>
       {btNewTask}
       {addTaskOpen && addTask}
     </div>

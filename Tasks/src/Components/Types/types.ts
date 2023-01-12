@@ -47,3 +47,8 @@ export type TypeTheme = {
   color: String,
   backgroundColor: String,
 }
+
+export type TDateSetings = {
+  date: Date,
+  setDate: Function
+}
