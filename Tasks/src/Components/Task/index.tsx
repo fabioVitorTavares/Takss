@@ -1,14 +1,15 @@
 import './style.css'
 import { BsInfo } from 'react-icons/bs'
-import { TypeTask } from '../Types/types'
+import { TypeTask, TypeTheme } from '../Types/types'
 import { VscCheck, VscDebugRestart, VscTrash } from 'react-icons/vsc'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { ModalConfirm } from '../ModalConfirm'
+import { ThemeContext } from '../../Routes'
 
 
 export function Task({ task, changeStatus, removeTask }: TypeTask) {
   
-  
+  const theme = useContext<TypeTheme>(ThemeContext)
 
   const [opacityInfos, setOpacityInfos] = useState<number>(0)
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -17,7 +18,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   
   const infos = (
     <span className='infos'
-      style={{ opacity: `${opacityInfos}` }}
+      style={{ opacity: `${opacityInfos}`}}
       
     >
       <div className='square'></div>
@@ -98,7 +99,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   )
 
   const backgroundColorTask = () => {
-      return task.status == 'Completed' ? {backgroundColor: '#1b9916'} : {}
+      return task.status == 'Completed' ? '#1b9916' : ''
   }
 
   const optionsTask = (
@@ -112,18 +113,25 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   )
 
   return (
-    <div
-      className='task'
-      style={backgroundColorTask()}      
-    >
-      {optionsTask}      
-      {descriptionTask}
-      {modalVisible &&
-        <ModalConfirm
+    <div className='task'>
+      <div 
+        className='task-border'
+        style={{ backgroundColor: `var(${theme.color})`}}
+        >
+      </div>
+      <div
+        className='task-content'
+        style={{backgroundColor: backgroundColorTask()}}
+      >
+        {optionsTask}      
+        {descriptionTask}
+        {modalVisible &&
+          <ModalConfirm
           description={modalDescription}
           confirm={modalConfirm}        
-        />
-      }
-    </div>    
+          />
+        }       
+      </div>
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 import { MinCalendar } from '../MinCalendar'
 import { TDateSetings } from '../Types/types'
 import { useNavigate } from 'react-router-dom'
+import { RiLogoutCircleLine } from 'react-icons/ri'
 import './style.css'
 
 export function Menu({date, setDate}: TDateSetings) {
@@ -13,11 +14,10 @@ export function Menu({date, setDate}: TDateSetings) {
     >
       Menu
       <MinCalendar date={date} setDate={setDate} />
-      <button
+      <RiLogoutCircleLine
+        className='btn-logout'
         onClick={() => navigate('/')}
-      >
-        Logout
-      </button>
+      />        
     </section>    
   )
 }

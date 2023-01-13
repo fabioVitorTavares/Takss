@@ -6,7 +6,9 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
+  border-radius: 0.2em;
 }
+
 .week {
   display: grid;  
   grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
@@ -37,6 +39,7 @@
 }
 
 .numbersSpan:hover {
+  transition: background-color 0s ease;
   background-color: #0821ad;
   cursor: pointer;
   font-weight: bolder;
