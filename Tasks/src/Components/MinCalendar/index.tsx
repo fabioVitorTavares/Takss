@@ -19,15 +19,8 @@ const months = [
   ['December', 'Dezembro']
 ]
 
-const days = [
-  ['S', 'D'],
-  ['M', 'S'],
-  ['T', 'T'],
-  ['W', 'Q'],
-  ['T', 'Q'],
-  ['F', 'S'],
-  ['S', 'S']    
-]
+
+
 
 export function MinCalendar({ date, setDate }: TDateSetings) {
 
@@ -119,6 +112,18 @@ export function MinCalendar({ date, setDate }: TDateSetings) {
     />
   )
 
+  const days = (
+    <>
+      <span>S</span>
+      <span>M</span>
+      <span>T</span>
+      <span>W</span>
+      <span>T</span>
+      <span>F</span>
+      <span>S</span>
+    </>
+  )
+
   return (
     <div className='minCalendar'>
       <div className='monthYearWeek'>
@@ -135,14 +140,7 @@ export function MinCalendar({ date, setDate }: TDateSetings) {
           </span>
         </div>
         <div className='week'>
-          {
-            days.map(day =>
-              <span
-                key={Math.random()}
-              >
-                {day[0]}
-              </span>)
-          } 
+          {days}
         </div>
       </div>
       
