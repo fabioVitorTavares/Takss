@@ -60,7 +60,7 @@
   justify-content: space-between;
   width: 100%;
   height: 4em;
-  background-color: var(--c4);
+  background-color: transparent;
   animation: expand 0.3s ease;
   border-radius: 0.3em;
   padding: 0 1em 0 1em;
@@ -83,10 +83,11 @@
   height: 3em;
   width: 90%;
   border-radius: 0.5em;
+  background-color: transparent;
 } 
 
 .inputDescriptionNewTask {
-  background-color: var(--c1);
+  background-color: transparent;
   width: 100%;
   height: 100%;
   padding-left: 1em;
@@ -96,7 +97,7 @@
 }
 
 .inputDeadlineNewTask{
-  background-color: var(--c1);
+  background-color: transparent;
   position: relative;  
   height: 100%;
   display: flex;

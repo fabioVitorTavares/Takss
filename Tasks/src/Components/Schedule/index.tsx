@@ -15,7 +15,6 @@ export function Schedule({date, setDate}: TDateSetings){
   const theme = useContext<TypeTheme>(ThemeContext)
 
   const [addTaskOpen, setAddTaskOpen] = useState<boolean>(false)
-  const [selectorDeadlineOpen, setSelectorDeadlineOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
   const [descriptionNewTask, setDescriptionNewTask] = useState<string>('')
   const [tasks, setTasks] = useState<TTask[]>([]);
@@ -31,7 +30,6 @@ export function Schedule({date, setDate}: TDateSetings){
 
   useEffect(() => {
     fetchInBackEnd()
-    setSelectorDeadlineOpen(false)
     setAddTaskOpen(false)
   }, [date, stateSchedule])
   
@@ -109,19 +107,21 @@ export function Schedule({date, setDate}: TDateSetings){
   const btNewTask = (
     <button
       className='btNewTask'
-      onClick={() => setAddTaskOpen(!addTaskOpen)}>
+      onClick={(e) => {
+          e.stopPropagation()
+          setAddTaskOpen(!addTaskOpen)
+        }
+      }> 
       New Task
     </button>
   )
 
-  const selectorDeadline = (
-    <div className='selectorDeadline'>
-      <MinCalendar
-        date={deadlineNewTask}
-        setDate={setDeadlineNewTask}        
-      />
+  const deadline = (
+    <div>
+      <p>Deadline</p>
+      {deadlineNewTask.toLocaleDateString()}
     </div>
-  );
+  )
 
   const btSave = (
     <button
@@ -136,9 +136,14 @@ export function Schedule({date, setDate}: TDateSetings){
     </button>
   );
 
+  addEventListener('click', (event) => { 
+    setAddTaskOpen(false)
+  })
+
   const addTask = (
     <div className='addTask'
       onClick={e => e.stopPropagation()}
+      style={{border: `0.1em solid var(${theme.color})`}}
     >
       <div className='inputs'>
         <input
@@ -152,12 +157,9 @@ export function Schedule({date, setDate}: TDateSetings){
           className='inputDeadlineNewTask'
           title='Deadline'
         >
-          <p>Deadline {deadlineNewTask.toLocaleDateString()}</p>
-          <VscCalendar
-            className='btSelectorDeadline'
-            onClick={() => setSelectorDeadlineOpen(!selectorDeadlineOpen)}
-          />
-          {selectorDeadlineOpen && selectorDeadline}
+        {deadline}
+          
+          
         </div>
       </div>
       {btSave}

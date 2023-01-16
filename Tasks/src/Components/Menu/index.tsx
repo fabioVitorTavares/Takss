@@ -11,8 +11,7 @@ export function Menu({date, setDate}: TDateSetings) {
   return (    
     <section
       className='menu'
-    >
-      Menu
+    >      
       <MinCalendar date={date} setDate={setDate} />
       <RiLogoutCircleLine
         className='btn-logout'
