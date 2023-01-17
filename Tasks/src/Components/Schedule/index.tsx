@@ -1,19 +1,29 @@
-import { useEffect, useState, useRef, useContext } from 'react'
+import {
+  useEffect,
+  useState,
+  useRef,
+  useContext
+} from 'react'
 import { Task } from '../Task'
-import { TDateSetings, TTask, TypeTheme } from '../Types/types'
-import { VscCalendar } from 'react-icons/vsc'
-import { MinCalendar } from '../MinCalendar'
-import { BiRightArrow, BiLeftArrow } from 'react-icons/bi'
+import {
+  TDateSetings,
+  TTask,
+  TypeTheme
+} from '../Types/types'
+import {
+  BiRightArrow,
+  BiLeftArrow
+} from 'react-icons/bi'
 import './style.css'
 import { ThemeContext } from '../../Routes'
+import ReactDOM from 'react-dom'
 
 
 const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sarturday']
 
 export function Schedule({date, setDate}: TDateSetings){
-  
+ 
   const theme = useContext<TypeTheme>(ThemeContext)
-
   const [addTaskOpen, setAddTaskOpen] = useState<boolean>(false)
   const [deadlineNewTask, setDeadlineNewTask] = useState<Date>(new Date)
   const [descriptionNewTask, setDescriptionNewTask] = useState<string>('')
@@ -116,12 +126,60 @@ export function Schedule({date, setDate}: TDateSetings){
     </button>
   )
 
+  const getDeadlineMonth = () => {
+    if (deadlineNewTask.getMonth() > 8) {
+      return deadlineNewTask.getMonth() + 1      
+    }
+    return `0${deadlineNewTask.getMonth() + 1}`
+  }
+
+  const bar = (
+    <p
+      style={{
+        backgroundColor: `var(${theme.color})`,
+        width: '0.05em'
+      }}
+    />
+  )
+
+
+  const log = (e: any) => {
+    if (e.currentTarget.scrollTop == 1) {
+      console.log('down');
+    }
+    else if (e.currentTarget.scrollTop == 0) {
+      console.log('up');
+    }
+  }
+
+
+
   const deadline = (
-    <div>
+    <div className='deadline'>
       <p>Deadline</p>
-      {deadlineNewTask.toLocaleDateString()}
+      <div className='selector-deadline'>
+        {bar}
+        <div
+          className='selector-day'          
+          onScroll={(e)=> log(e)}
+          
+        >
+          {deadlineNewTask.getDate()}           
+        </div>
+        {bar}
+        <div className='selector-month'>
+          {getDeadlineMonth()}
+        </div>
+        {bar}
+        <div className='selector-year'>
+          {deadlineNewTask.getFullYear()}
+        </div>
+        {bar}
+      </div>
     </div>
   )
+
+
 
   const btSave = (
     <button
@@ -142,7 +200,7 @@ export function Schedule({date, setDate}: TDateSetings){
 
   const addTask = (
     <div className='addTask'
-      onClick={e => e.stopPropagation()}
+      onClick={e => e.stopPropagation() }
       style={{border: `0.1em solid var(${theme.color})`}}
     >
       <div className='inputs'>
@@ -152,6 +210,7 @@ export function Schedule({date, setDate}: TDateSetings){
           className='inputDescriptionNewTask'
           type='text'
           onChange={(e) => setDescriptionNewTask(e.target.value)}
+          style={{caretColor: `var(${theme.color})` }}	
         />
         <div
           className='inputDeadlineNewTask'
@@ -184,8 +243,8 @@ export function Schedule({date, setDate}: TDateSetings){
       <div className='titleCalendar'>
         <BiLeftArrow
           onClick={(e) => {
-              e.stopPropagation() 
-              dayPrevious()
+            e.stopPropagation()
+            dayPrevious()
             }
           }
         />
@@ -203,8 +262,7 @@ export function Schedule({date, setDate}: TDateSetings){
           }
         />
       </div>
-      <div className='tasks'>
-
+      <div className='tasks'>       
         {
           tasks?.map(
             task =>

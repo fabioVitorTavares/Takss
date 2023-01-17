@@ -107,11 +107,28 @@
   border-radius: 0 0.5em 0.5em 0;
 }
 
+.deadline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-.selectorDeadline {
-  position: absolute;
-  top: 105%;
-  left: 25%;
+.selector-deadline {
+  display: flex;
+  gap: 0.5em;  
+}
+
+.selector-day, .selector-month, .selector-year{
+  cursor: ns-resize;
+  overflow-y: scroll;
+  height: 1.3em;
+  
+}
+
+.selector-day::-webkit-scrollbar, 
+.selector-month::-webkit-scrollbar,
+.selector-year::-webkit-scrollbar {
+  width: 0em;               
 }
 
 .titleCalendar {
