@@ -119,10 +119,22 @@
 }
 
 .selector-day, .selector-month, .selector-year{
+  display: flex;
+  flex-direction: column;
   cursor: ns-resize;
-  overflow-y: scroll;
-  height: 1.3em;
   
+  height: 2em;  
+  background-color: blue;
+  overflow-y: scroll;
+}
+
+.content-selector-day {
+  position: relative;
+  scroll-margin-inline-start: 2em;
+  display: flex;
+  flex-direction: column;
+  height: 6em;  
+  background-color: red;
 }
 
 .selector-day::-webkit-scrollbar, 

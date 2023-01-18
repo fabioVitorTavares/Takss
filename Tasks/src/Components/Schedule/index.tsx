@@ -161,10 +161,14 @@ export function Schedule({date, setDate}: TDateSetings){
         {bar}
         <div
           className='selector-day'          
-          onScroll={(e)=> log(e)}
-          
+          onScroll={(e) => log(e)}           
         >
-          {deadlineNewTask.getDate()}           
+          <div className='content-selector-day'>
+            <h1>.</h1>
+            {deadlineNewTask.getDate()}   
+            <h1>.</h1>
+            
+          </div>
         </div>
         {bar}
         <div className='selector-month'>
