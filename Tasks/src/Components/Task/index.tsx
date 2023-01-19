@@ -5,7 +5,6 @@ import { VscCheck, VscDebugRestart, VscTrash } from 'react-icons/vsc'
 import { useState, useContext } from 'react'
 import { ModalConfirm } from '../ModalConfirm'
 import { ThemeContext } from '../../Routes'
-import  {CSSTransition}  from 'react-transition-group'
 
 
 export function Task({ task, changeStatus, removeTask }: TypeTask) {
