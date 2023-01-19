@@ -5,6 +5,7 @@ import { VscCheck, VscDebugRestart, VscTrash } from 'react-icons/vsc'
 import { useState, useContext } from 'react'
 import { ModalConfirm } from '../ModalConfirm'
 import { ThemeContext } from '../../Routes'
+import  {CSSTransition}  from 'react-transition-group'
 
 
 export function Task({ task, changeStatus, removeTask }: TypeTask) {
@@ -113,7 +114,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
   )
 
   return (
-    <div className='task'>
+    <div className='task'>      
       <div 
         className='task-border'
         style={{ backgroundColor: `var(${theme.color})`}}
@@ -122,7 +123,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
       <div
         className='task-content'
         style={{backgroundColor: backgroundColorTask()}}
-      >
+        >
         {optionsTask}      
         {descriptionTask}
         {modalVisible &&
@@ -131,7 +132,7 @@ export function Task({ task, changeStatus, removeTask }: TypeTask) {
           confirm={modalConfirm}        
           />
         }       
-      </div>
-    </div>
+      </div>    
+    </div>          
   )
 }

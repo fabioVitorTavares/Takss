@@ -16,7 +16,6 @@ import {
 } from 'react-icons/bi'
 import './style.css'
 import { ThemeContext } from '../../Routes'
-import ReactDOM from 'react-dom'
 
 
 const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sarturday']
@@ -143,42 +142,79 @@ export function Schedule({date, setDate}: TDateSetings){
   )
 
 
-  const log = (e: any) => {
-    if (e.currentTarget.scrollTop == 1) {
-      console.log('down');
-    }
-    else if (e.currentTarget.scrollTop == 0) {
-      console.log('up');
-    }
+
+
+  const nextDayDeadline = () => {
+    setDeadlineNewTask(new Date(deadlineNewTask.getFullYear(), deadlineNewTask.getMonth(), deadlineNewTask.getDate() + 1))
   }
 
+  const dayPreviousDeadline = () => {
+    setDeadlineNewTask(new Date(deadlineNewTask.getFullYear(), deadlineNewTask.getMonth(), deadlineNewTask.getDate() - 1))
+  }
 
+  const monthPreviousDeadline = () => {
+    setDeadlineNewTask(new Date(deadlineNewTask.getFullYear(), deadlineNewTask.getMonth()-1, deadlineNewTask.getDate()))
+  }
 
+  const nextMonthDeadline = () => {
+    setDeadlineNewTask(new Date(deadlineNewTask.getFullYear(), deadlineNewTask.getMonth()+1, deadlineNewTask.getDate()))
+  }
+
+  const nextYearDeadline = () => {
+    setDeadlineNewTask(new Date(deadlineNewTask.getFullYear()+1, deadlineNewTask.getMonth(), deadlineNewTask.getDate()))
+  }
+
+  const yearPreviousDeadline = () => {
+    setDeadlineNewTask(new Date(deadlineNewTask.getFullYear()-1, deadlineNewTask.getMonth(), deadlineNewTask.getDate()))
+  }
+
+  const functionsChangeDeadline = [
+    nextDayDeadline,
+    dayPreviousDeadline,
+    nextMonthDeadline,
+    monthPreviousDeadline,
+    nextYearDeadline,
+    yearPreviousDeadline  
+  ]
+
+  const changeDeadline =  (e: React.WheelEvent) => {
+    const idOfClass =
+      e.currentTarget.className == 'selector-day' ? 0 :
+      e.currentTarget.className == 'selector-month' ? 2 : 4
+    
+    const idfunction = e.deltaY == 100 ? idOfClass : idOfClass + 1
+    functionsChangeDeadline[idfunction]()
+  }
+ 
   const deadline = (
-    <div className='deadline'>
+    <div
+      className='deadline'
+      style={{color: `var(${theme.color})`}}
+    >
       <p>Deadline</p>
-      <div className='selector-deadline'>
+      <div className='selectors'>
         {bar}
         <div
-          className='selector-day'          
-          onScroll={(e) => log(e)}           
+          className='selector-day'
+          onWheel={async (e) =>  await changeDeadline(e)}          
         >
-          <div className='content-selector-day'>
-            <h1>.</h1>
-            {deadlineNewTask.getDate()}   
-            <h1>.</h1>
-            
-          </div>
+          {deadlineNewTask.getDate()}   
         </div>
         {bar}
-        <div className='selector-month'>
+        <div
+          className='selector-month'
+          onWheel={(e) => changeDeadline(e)}
+        >
           {getDeadlineMonth()}
         </div>
         {bar}
-        <div className='selector-year'>
+        <div
+          className='selector-year'
+          onWheel={(e) => changeDeadline(e)}
+        >
           {deadlineNewTask.getFullYear()}
         </div>
-        {bar}
+        {bar}        
       </div>
     </div>
   )
@@ -244,7 +280,10 @@ export function Schedule({date, setDate}: TDateSetings){
       style={{borderLeft: `0.1em solid var(${theme.color})`}}
     >
       
-      <div className='titleCalendar'>
+      <div
+        className='titleCalendar'
+        style={{color: `var(${theme.color})`}}
+      >
         <BiLeftArrow
           onClick={(e) => {
             e.stopPropagation()

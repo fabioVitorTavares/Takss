@@ -10,6 +10,16 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 0.5em;
+  animation: entering 2s ease;
+}
+
+@keyframes entering {
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+  }
 }
 
 .task-border {
