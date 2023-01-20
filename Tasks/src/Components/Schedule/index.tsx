@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useState,
   useRef,
@@ -238,12 +238,15 @@ export function Schedule({date, setDate}: TDateSetings){
     setAddTaskOpen(false)
   })
 
+  
+ 
+
   const addTask = (
     <div className='addTask'
       onClick={e => e.stopPropagation() }
       style={{border: `0.1em solid var(${theme.color})`}}
     >
-      <div className='inputs'>
+      <div className='inputs' >
         <input
           autoFocus={true}
           ref={inputDescriptionNewTask}
@@ -273,16 +276,16 @@ export function Schedule({date, setDate}: TDateSetings){
     setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1))
   }
 
-
   return (
     <div
       className='schedule'
-      style={{borderLeft: `0.1em solid var(${theme.color})`}}
+      style={{ borderLeft: `0.1em solid var(${theme.color})` }}
     >
       
       <div
         className='titleCalendar'
-        style={{color: `var(${theme.color})`}}
+        style={{ color: `var(${theme.color})` }}
+
       >
         <BiLeftArrow
           onClick={(e) => {
