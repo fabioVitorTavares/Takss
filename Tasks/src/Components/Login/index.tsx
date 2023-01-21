@@ -30,7 +30,7 @@ export function Login() {
     <div
       onKeyDown={keyEnter}
       className='login'
-      
+      style={{boxShadow: `0.5em 0.5em 0.5em var(${theme.color})`}}
     >  
       <div className='inputsLogin'>
         <div className='divInput'>

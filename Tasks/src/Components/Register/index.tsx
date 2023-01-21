@@ -71,7 +71,7 @@ export function Register() {
   const register = (
     <div
       className='register'
-      
+      style={{boxShadow: `0.5em 0.5em 0.5em var(${theme.color})`}}
       >
       {inputCompleteName}
       {inputEmail}

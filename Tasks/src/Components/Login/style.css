@@ -15,9 +15,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--c2);
+  background-color: var(--c4);
   gap: 3em;
-  transition: background-color 1s ease;
+  transition: all 1s ease;
+  
 }
 
 .input {
@@ -28,6 +29,10 @@
   border-radius: 0.2em;
   outline: none;
   border: none;
+}
+
+.input::placeholder {
+  color: #000;
 }
 
 .divInput {
