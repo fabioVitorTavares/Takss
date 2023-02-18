@@ -129,7 +129,7 @@ export function Home() {
     </svg>
   )
 
-
+ const log = console.log()
 
   return (
     
