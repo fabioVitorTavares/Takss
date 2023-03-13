@@ -52,3 +52,10 @@ export type TDateSetings = {
   date: Date,
   setDate: Function
 }
+
+export type TipoTask = {
+  id: string,
+  description: string,
+  dateCreated: string,
+  date: string,
+}

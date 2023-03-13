@@ -2,9 +2,9 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import imgAvatar from "./avatar.svg";
 import { useContext, useEffect, useState } from "react";
-import { TypeTheme } from "../Types/types";
+import { TipoTask, TTask, TypeTheme } from "../Types/types";
 import { ThemeContext } from "../../Routes";
-import { getAllTasks } from "../../Api";
+import { getAllTasks, saveTask } from "../../Api";
 
 export function Home() {
   const navigate = useNavigate();
@@ -182,22 +182,18 @@ export function Home() {
     </svg>
   );
 
-  const log = console.log();
-
   const url = `http://127.0.0.1:8080`;
 
-  const [tasks, setTask] = useState();
-  useEffect(() => {
-    getTasks();
-    console.log("aqui");
-  }, []);
+  const [tasks, setTask] = useState<TipoTask[]>([]);
 
-  async function getTasks() {
-    console.log("a");
-    fetch("https://api.github.com/users/fabioVitorTavares")
-      .then((response) => response.json()) //Converting the response to a JSON object
-      .then((r) => console.log(r))
-      .catch((error) => console.error(error));
+  async function gat() {
+    const allTasks = await getAllTasks();
+    console.log(allTasks);
+    setTask(JSON.parse(allTasks))
+  }
+ 
+  async function post() {
+    saveTask();
   }
 
   return (
@@ -247,7 +243,21 @@ export function Home() {
     //   </div>
     // </div>
     <div>
-      <h1>Aqui</h1>
+      <button onClick={() => gat()}>Buscar</button>
+      <button onClick={() => post()}>Post</button>
+      <h1>Tasks</h1>
+      <table>
+        { 
+          tasks.map(task => ( 
+            <tr key={task.id}>
+              <td>{task.description}</td>
+              <td>{new Date(task.dateCreated).toLocaleDateString()}</td>
+              <td>{new Date(task.date).toLocaleDateString()}</td>
+            </tr>
+          ))          
+        }
+      </table>
+        
     </div>
   );
 }
