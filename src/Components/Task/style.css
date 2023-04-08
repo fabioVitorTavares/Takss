@@ -1,0 +1,165 @@
+
+
+.task {
+  position: relative;
+  width: 100%;
+  height: 3.2em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5em;
+  animation: entering 2s ease;
+}
+
+@keyframes entering {
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}
+
+.task-border {
+  position: absolute;  
+  width: 100%;
+  height: 100%;
+  border-radius: 0.3em;
+  opacity: 0;
+}
+
+.task-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - 0.1em);
+  height: calc(100% - 0.1em);
+  background-color: var(--c4);
+  border-radius: 0.3em;
+}
+
+.task:hover .task-border {
+  opacity: 1;
+}
+
+.optionsTask:hover {
+  animation: visible 1s ease;
+  opacity: 1;
+}
+
+.optionsTask:not(:hover) {
+  animation: invisible 1s ease;
+}
+
+.optionsTask { 
+  opacity: 0; 
+  background: transparent;
+  width: 100%;
+  height: 100%;  
+  position: absolute;  
+  z-index: 2;
+}
+
+.btsOptionsTask {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: -0.75em;
+  height: 1.5em;
+  right: 0.5em;
+}
+
+.btInfo:hover{
+  fill: #07477c;
+  stroke-width: 2%;
+}
+
+.btTrash:hover{
+  fill: #910505;
+  stroke-width: 2%;
+}
+
+.btCheck:hover{
+  fill: #095203;
+}
+
+.btUndo:hover{
+  fill: #dd6b00;
+}
+
+.bt {
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: 0.2em;
+  background-color: var(--c5);
+  border-radius: 15%; 
+}
+
+.bt:hover {  
+  cursor: pointer;
+}
+
+
+.descriptionTask {
+  position: relative;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+  text-overflow: ellipsis;
+  z-index: 0;
+}
+
+.infos{
+  opacity: 0;
+  position: absolute;  
+  background-color: #252525;
+  border-radius: 0.2em;
+  width: 10em;
+  height: fit-content;
+  padding: 0.5em;
+  top: 2em;
+  left: -4em;
+  
+}
+
+.infos p {
+  text-align: center;
+  color: #f6f4f4;
+  font-size: small;
+}
+
+.square {
+  position: absolute;
+  top: -8px;
+  left: 45%;
+  width: 16px;
+  height: 16px;
+  background-color: #252525;
+  transform: rotate(45deg);
+}
+
+
+
+
+
+@keyframes visible {  
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }  
+}
+
+@keyframes invisible { 
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  } 
+}
+

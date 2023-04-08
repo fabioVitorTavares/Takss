@@ -1,0 +1,75 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.login {
+  width: 20em;
+  height: 25em;
+  display: flex;
+  border-radius: 0.5em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--c4);
+  gap: 3em;
+  transition: all 1s ease;
+  
+}
+
+.input {
+  padding-left: 1em;
+  margin-left: 0.5em;
+  width: 18em;
+  height: 3em;
+  border-radius: 0.2em;
+  outline: none;
+  border: none;
+}
+
+.input::placeholder {
+  color: #000;
+}
+
+.divInput {
+  display: flex;
+  align-items: center;
+}
+
+
+.inputsLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.btnsLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+
+.btnRegisterLogin, .btnEnterLogin {
+  width: 8em;
+  height: 2em;
+  background-color: var(--c1);
+  border: none;
+  border-radius: 0.2em;  
+  cursor: pointer;
+  font-size: 1em;
+}
+.btnEnterLogin {
+  color: #ffffff;
+  background-color: rgb(5, 95, 231);
+  border: none;
+}
+
+.btnEnterLogin:hover {
+  background-color: #054099;
+  outline: 0.05em solid #054099;
+}

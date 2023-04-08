@@ -1,0 +1,304 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;  
+  transition: background-color  1s ease;
+
+}
+
+.headerHomePage {
+  text-align: center;
+}
+
+.bodyHomePage {
+  display: flex;
+  flex-direction: row;
+}
+
+.titleAndResume h1 {
+  font-size: 2.5em;
+}
+
+.titleAndResume h1, 
+.titleAndResume p, 
+.rightSection p {
+  transition: color  1s ease;
+}
+
+.btn {  
+  border-radius: 0.5em;
+  font-size: medium;
+  cursor: pointer;
+  width: 12em;
+  height: 3em;
+  margin: 1em 1em 0 0;
+}
+
+
+.checklistImg {
+  width: 30em;
+}
+
+.leftSection {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightSection {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-left: 4em;
+}
+
+.imgAvatar {
+  height: 25em;
+  width: 25em;
+  min-height: 25em;
+  min-width: 25em;
+}
+
+
+
+.ps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+.ps svg {
+  margin-right: 0.5em;
+}
+
+.ps:hover svg {
+  scale: 1.2;
+}
+
+.btnLogin {
+  color: #ffffff;
+  background-color: rgb(5, 95, 231);
+  border: none;
+}
+
+.btnLogin:hover {
+  background-color: #054099;
+  outline: 0.05em solid #054099;
+}
+
+.btnRegister {
+  color: #000;
+  border: 0.05em solid #2a2c2b;
+}
+
+.btnRegister:hover {
+  outline: 0.05em solid #2a2c2b;
+}
+
+.path-check-one {
+  stroke-dasharray: 180;
+  animation: svg-animate-one 10s ease backwards infinite;  
+}
+
+@keyframes svg-animate-one {
+  0% {
+    stroke-dashoffset: 180;
+  }
+  30% {
+    stroke-dashoffset: 180; 
+  }
+  40% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }  
+}
+
+.path-check-two {
+  stroke-dasharray: 180;
+  animation: svg-animate-two 10s ease infinite;
+}
+
+@keyframes svg-animate-two {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  40% {
+    stroke-dashoffset: 180;
+  }
+  50% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.path-x-one {
+  stroke-dasharray: 180;
+  animation: svg-animate-x-one 10s ease infinite;
+}
+
+@keyframes svg-animate-x-one {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  50% {
+    stroke-dashoffset: 180;
+  }
+  55% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.path-x-two {
+  stroke-dasharray: 180;
+  animation: svg-animate-x-two 10s ease infinite;
+}
+
+@keyframes svg-animate-x-two {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  55% {
+    stroke-dashoffset: 180;
+  }
+  60% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.path-check-tree {
+  stroke-dasharray: 180;
+  animation: svg-animate-tree 10s ease infinite;
+  
+}
+
+@keyframes svg-animate-tree {
+  0%{
+    stroke-dashoffset: 180;
+  }
+  60% {
+    stroke-dashoffset: 180;
+  }
+  70% {
+    stroke-dashoffset: 0; 
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-one {
+  animation: hidden-rect-one 10s ease infinite;
+}
+
+@keyframes hidden-rect-one {
+  0%{
+    opacity: 0;
+  }
+  10%{
+    opacity: 0;
+  }
+  15%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-two {
+  animation: hidden-rect-two 10s ease infinite;
+}
+
+@keyframes hidden-rect-two {
+  0%{
+    opacity: 0;
+  }
+  15%{
+    opacity: 0;
+  }
+  20%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-tree {
+  animation: hidden-rect-tree 10s ease infinite;
+}
+
+@keyframes hidden-rect-tree {
+  0%{
+    opacity: 0;
+  }
+  20%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.rect-four {
+  animation: hidden-rect-four 10s ease infinite;
+}
+
+@keyframes hidden-rect-four {
+  0%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 0;
+  }
+  30%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}

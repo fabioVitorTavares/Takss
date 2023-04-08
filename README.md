@@ -1,2 +1,5 @@
 # Takss
-Management of tasks
+Management of taskss
+Mobile and web
+Java spring boot
+
